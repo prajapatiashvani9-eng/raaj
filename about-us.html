@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Raaj Society Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #1a4b8c;
+            --secondary: #2a6fdb;
+            --accent: #ff6b00;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+        }
+        
+        h2 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            z-index: 1002;
+        }
+        
+        img {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-right: 15px;
+            box-shadow: 0 4px 8px rgba(4, 8, 255, 0.4);
+            transition: var(--transition);
+        }
+        
+        .logo:hover {
+            transform: rotate(10deg) scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo-text span {
+            color: var(--accent);
+        }
+        
+        /* Hamburger Menu Button */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1002;
+        }
+        
+        .hamburger-menu span {
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            transition: var(--transition);
+            border-radius: 3px;
+        }
+        
+        .hamburger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .home-btn, .services-btn, .login-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .home-btn:hover, .services-btn:hover, .login-btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        /* Services Dropdown */
+        .services-dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 280px;
+            background-color: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-radius: 10px;
+            padding: 15px 0;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+        
+        .services-dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-content:before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 25px;
+            width: 16px;
+            height: 16px;
+            background-color: white;
+            transform: rotate(45deg);
+            box-shadow: -3px -3px 5px rgba(0,0,0,0.04);
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 25px;
+            text-decoration: none;
+            color: var(--dark);
+            transition: var(--transition);
+            border-left: 4px solid transparent;
+        }
+        
+        .dropdown-item:hover {
+            background-color: rgba(26, 75, 140, 0.05);
+            border-left-color: var(--accent);
+            color: var(--primary);
+            padding-left: 30px;
+        }
+        
+        .dropdown-icon {
+            width: 30px;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-right: 12px;
+        }
+        
+        .dropdown-item:hover .dropdown-icon {
+            color: var(--accent);
+        }
+        
+        .dropdown-text {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .dropdown-arrow {
+            font-size: 0.8rem;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+        
+        .dropdown-item:hover .dropdown-arrow {
+            color: var(--accent);
+            transform: translateX(3px);
+        }
+        
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.98);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            padding: 20px;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-nav-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .mobile-menu-overlay .home-btn,
+        .mobile-menu-overlay .login-btn {
+            width: 100%;
+            justify-content: center;
+            padding: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .mobile-menu-overlay .services-dropdown {
+            width: 100%;
+        }
+        
+        .mobile-menu-overlay .services-btn {
+            width: 100%;
+            justify-content: center;
+            padding: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .mobile-menu-overlay .dropdown-content {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            margin-top: 10px;
+            box-shadow: none;
+            background-color: rgba(26, 75, 140, 0.05);
+            border-radius: 10px;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            display: none;
+        }
+        
+        .mobile-menu-overlay .dropdown-content.active {
+            display: block;
+        }
+        
+        .mobile-menu-overlay .dropdown-content:before {
+            display: none;
+        }
+        
+        .mobile-menu-overlay .dropdown-item {
+            padding: 15px 20px;
+            font-size: 1.1rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,202.7C672,203,768,181,864,170.7C960,160,1056,160,1152,170.7C1248,181,1344,203,1392,213.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero h1:after {
+            background: var(--accent);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+        
+        .tagline {
+            font-style: none;
+            font-weight: 500;
+            margin-top: 20px;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+        
+        /* About Section */
+        .about {
+            background-color: white;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-highlights {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        
+        .about-highlights:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .highlight-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+        
+        .highlight-item:hover .highlight-icon {
+            background-color: var(--accent);
+            transform: rotate(15deg);
+        }
+        
+        /* Services Section */
+        .services {
+            background-color: var(--light);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .service-card:hover:before {
+            width: 100%;
+            opacity: 0.1;
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-icon {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+        
+        .service-card h3 {
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover h3 {
+            color: var(--secondary);
+        }
+        
+        /* Why Choose Us Section */
+        .why-choose {
+            background-color: white;
+        }
+        
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-item {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 10px;
+            background-color: var(--light);
+            transition: var(--transition);
+        }
+        
+        .benefit-item:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-10px);
+        }
+        
+        .benefit-item:hover h3,
+        .benefit-item:hover p {
+            color: white;
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .benefit-item:hover .benefit-icon {
+            color: white;
+            transform: scale(1.2);
+        }
+        
+        /* Service Areas Section */
+        .service-areas {
+            background-color: var(--light);
+        }
+        
+        .areas-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .area-item {
+            background-color: white;
+            padding: 20px 30px;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .area-item:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .area-icon {
+            color: var(--accent);
+            transition: var(--transition);
+        }
+        
+        .area-item:hover .area-icon {
+            color: white;
+        }
+        
+        /* Mission Vision Section */
+        .mission-vision {
+            background-color: white;
+        }
+        
+        .mv-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .mv-card {
+            flex: 1;
+            min-width: 300px;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mv-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+        }
+        
+        .mv-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .mv-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .mv-card:hover .mv-icon {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #ffd166;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ecf0f1;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .footer-section a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .footer-section a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #ffd166;
+            transition: width 0.3s ease;
+        }
+        
+        .footer-section a:hover::after {
+            width: 100%;
+        }
+        
+        .footer-section p:hover {
+            color: #ffd166;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #2a5298;
+            padding-top: 15px;
+            font-size: 13px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hamburger-menu {
+                display: flex;
+            }
+            
+            .nav-buttons {
+                display: none;
+            }
+            
+            .mobile-menu-overlay .dropdown-content {
+                position: relative;
+                top: 0;
+                left: 0;
+                width: 100%;
+                margin-top: 10px;
+                box-shadow: none;
+                background-color: rgba(26, 75, 140, 0.05);
+                border-radius: 10px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .header-content {
+                padding: 10px 0;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            img {
+                width: 60px;
+                height: 60px;
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            
+            img {
+                width: 50px;
+                height: 50px;
+                margin-right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <img src="img/R LOGO.png" alt="">
+                    <div class="logo-text">Raaj <span>Society Solutions</span></div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="nav-buttons">
+                    <a href="index.html" class="home-btn">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    
+                    <!-- Services Dropdown -->
+                    <div class="services-dropdown">
+                        <button class="services-btn">
+                            <i class="fas fa-cogs"></i> Services <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="accounts-services.html" class="dropdown-item">
+                                <i class="fas fa-file-invoice-dollar dropdown-icon"></i>
+                                <span class="dropdown-text">Accounts Services</span>
+                                <i class="fas fa-chevron-right dropdown-arrow"></i>
+                            </a>
+                            <a href="audit-services.html" class="dropdown-item">
+                                <i class="fas fa-search-dollar dropdown-icon"></i>
+                                <span class="dropdown-text">Audit Services</span>
+                                <i class="fas fa-chevron-right dropdown-arrow"></i>
+                            </a>
+                            <a href="statutory-services.html" class="dropdown-item">
+                                <i class="fas fa-balance-scale dropdown-icon"></i>
+                                <span class="dropdown-text">Statutory Services</span>
+                                <i class="fas fa-chevron-right dropdown-arrow"></i>
+                            </a>
+                            <a href="educational-services.html" class="dropdown-item">
+                                <i class="fas fa-chalkboard-teacher dropdown-icon"></i>
+                                <span class="dropdown-text">Awareness & Training Services</span>
+                                <i class="fas fa-chevron-right dropdown-arrow"></i>
+                            </a>
+                            <a href="insurance-services.html" class="dropdown-item">
+                                <i class="fas fa-shield-alt dropdown-icon"></i>
+                                <span class="dropdown-text">Insurance Services</span>
+                                <i class="fas fa-chevron-right dropdown-arrow"></i>
+                            </a>
+                            <a href="legal-consultancy.html" class="dropdown-item">
+                                <i class="fas fa-gavel dropdown-icon"></i>
+                                <span class="dropdown-text">Legal Consultancy</span>
+                                <i class="fas fa-chevron-right dropdown-arrow"></i>
+                            </a>
+                            <a href="taxation-consultancy.html" class="dropdown-item">
+                                <i class="fas fa-calculator dropdown-icon"></i>
+                                <span class="dropdown-text">Taxation Consultancy</span>
+                                <i class="fas fa-chevron-right dropdown-arrow"></i>
+                            </a>
+                            <a href="election-services.html" class="dropdown-item">
+                                <i class="fas fa-tasks dropdown-icon"></i>
+                                <span class="dropdown-text">Election Services</span>
+                                <i class="fas fa-chevron-right dropdown-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <a href="login.html" class="login-btn">
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                </div>
+                
+                <!-- Hamburger Menu Button -->
+                <button class="hamburger-menu" id="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+            <div class="mobile-nav-buttons">
+                <a href="index.html" class="home-btn">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                
+                <!-- Services Dropdown for Mobile -->
+                <div class="services-dropdown">
+                    <button class="services-btn" id="mobile-services-btn">
+                        <i class="fas fa-cogs"></i> Services <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content" id="mobile-dropdown-content">
+                        <a href="accounts-services.html" class="dropdown-item">
+                            <i class="fas fa-file-invoice-dollar dropdown-icon"></i>
+                            <span class="dropdown-text">Accounts Services</span>
+                            <i class="fas fa-chevron-right dropdown-arrow"></i>
+                        </a>
+                        <a href="audit-services.html" class="dropdown-item">
+                            <i class="fas fa-search-dollar dropdown-icon"></i>
+                            <span class="dropdown-text">Audit Services</span>
+                            <i class="fas fa-chevron-right dropdown-arrow"></i>
+                        </a>
+                        <a href="statutory-services.html" class="dropdown-item">
+                            <i class="fas fa-balance-scale dropdown-icon"></i>
+                            <span class="dropdown-text">Statutory Services</span>
+                            <i class="fas fa-chevron-right dropdown-arrow"></i>
+                        </a>
+                        <a href="educational-services.html" class="dropdown-item">
+                            <i class="fas fa-chalkboard-teacher dropdown-icon"></i>
+                            <span class="dropdown-text">Awareness & Training Services</span>
+                            <i class="fas fa-chevron-right dropdown-arrow"></i>
+                        </a>
+                        <a href="insurance-services.html" class="dropdown-item">
+                            <i class="fas fa-shield-alt dropdown-icon"></i>
+                            <span class="dropdown-text">Insurance Services</span>
+                            <i class="fas fa-chevron-right dropdown-arrow"></i>
+                        </a>
+                        <a href="legal-consultancy.html" class="dropdown-item">
+                            <i class="fas fa-gavel dropdown-icon"></i>
+                            <span class="dropdown-text">Legal Consultancy</span>
+                            <i class="fas fa-chevron-right dropdown-arrow"></i>
+                        </a>
+                        <a href="taxation-consultancy.html" class="dropdown-item">
+                            <i class="fas fa-calculator dropdown-icon"></i>
+                            <span class="dropdown-text">Taxation Consultancy</span>
+                            <i class="fas fa-chevron-right dropdown-arrow"></i>
+                        </a>
+                        <a href="election-services.html" class="dropdown-item">
+                            <i class="fas fa-tasks dropdown-icon"></i>
+                            <span class="dropdown-text">Election Services</span>
+                            <i class="fas fa-chevron-right dropdown-arrow"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <a href="login.html" class="login-btn">
+                    <i class="fas fa-envelope"></i> Contact
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>About Raaj Society Solutions</h1>
+                <p>Your Trusted Partner in Co-operative Housing Society Management & Compliance</p>
+                <p class="tagline"><b>THE SYMBOL OF SUCCESS</b></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p><strong>Raaj Society Solutions</strong>, established in 2008, is a premier service-provider specializing in Co-operative Housing Society Accounting, Administration, Legal Compliance, Taxation, and Statutory Support Services.</p>
+                    <p>With over 17 years of dedicated experience, we cater to housing societies across Mumbai, Navi Mumbai, Panvel, and Thane.</p>
+                    <p>We operate with a strong focus on accuracy, transparency, statutory compliance, and professional ethics, ensuring that societies function smoothly and lawfully as per the applicable laws of Maharashtra.</p>
+                </div>
+                <div class="about-highlights">
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Since 2008</h3>
+                            <p>17+ years of dedicated service</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Service Areas</h3>
+                            <p>Mumbai, Navi Mumbai, Panvel & Thane</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h3>Expert Team</h3>
+                            <p>Professional Accountants, Legal Advisors & Tax Consultants</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2>Our Professional Expertise & Services</h2>
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>Monthly Billing & Maintenance Management</h3>
+                    <p>We handle complete billing activities as per:</p>
+                    <ul>
+                        <li>Maharashtra Co-operative Societies Act, 1960</li>
+                        <li>MCS Rules, 1961</li>
+                        <li>Bye-laws of the Society</li>
+                    </ul>
+                    <p><b>Services include:</b></p>
+                    <ul>
+                        <li>Monthly maintenance billing</li>
+                        <li>Debit/Credit entries</li>
+                        <li>Defaulter tracking & penalty calculation</li>
+                        <li>Cash/Bank reconciliation</li>
+                        <li>Member ledger maintenance</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Monthly & Annual Accounts Writing</h3>
+                    <p>End-to-end accounting is done using professional software and audit-ready formats:</p>
+                    <ul>
+                        <li>Monthly accounts preparation</li>
+                        <li>Finalization of annual accounts</li>
+                        <li>Income & Expenditure A/c</li>
+                        <li>Balance Sheet</li>
+                        <li>Trial Balance</li>
+                        <li>General ledger</li>
+                    </ul>
+                    <p><b>Prepared as per:</b></p>
+                    <ul>
+                        <li>Section 81 – Audit of Societies</li>
+                        <li>Bye-law No. 147 to 153 – Accounts & Financial Management</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>Statutory Compliance Services</h3>
+                    <p>We ensure full compliance with government-required statutory provisions:</p>
+                    <p><strong>A. Registrar Related Filings</strong></p>
+                    <ul>
+                        <li>Annual Returns (Form 'I')</li>
+                        <li>Election compliance (5-year election cycle)</li>
+                        <li>Audit compliance and rectification report (Section 75 & 81)</li>
+                    </ul>
+                    <p><strong>B. GST Compliance (If Applicable)</strong></p>
+                    <ul>
+                        <li>GST registration</li>
+                        <li>Monthly/Quarterly return filing</li>
+                        <li>GST audit</li>
+                    </ul>
+                    <p><strong>C. TDS Compliance</strong></p>
+                    <ul>
+                        <li>Monthly TDS filing</li>
+                        <li>26Q / 24Q returns</li>
+                        <li>Form 16A issuance</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>Legal Consultancy & Advisory</h3>
+                    <p>We provide guidance and support as per:</p>
+                    <ul>
+                        <li>Maharashtra Co-operative Societies Act, 1960</li>
+                        <li>MCS Rule 1961</li>
+                        <li>Model Bye-laws 2014/2023</li>
+                        <li>Society Disputes (Section 91, 101, etc.)</li>
+                    </ul>
+                    <p><b>Services include:</b></p>
+                    <ul>
+                        <li>Recovery notices (Section 154B-29)</li>
+                        <li>Drafting agreements and resolutions</li>
+                        <li>Redevelopment advisory (as per GR dated 03.01.2009 & amendments)</li>
+                        <li>Guidance on elections, AGM, SGM</li>
+                        <li>Membership transfers, nominations & legal documentation</li>
+                        <li>Handling disputes & compliance notices</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Taxation Services</h3>
+                    <p>We manage tax compliance for societies as per Income Tax Act:</p>
+                    <ul>
+                        <li>PAN / TAN services</li>
+                        <li>Advance tax calculations</li>
+                        <li>Annual Income-Tax Return (ITR-5)</li>
+                        <li>80P exemption guidance</li>
+                        <li>Professional Tax (if applicable)</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Educational & Awareness Sessions</h3>
+                    <p>We conduct training for society members & committee:</p>
+                    <ul>
+                        <li>Bye-law training</li>
+                        <li>Duties & responsibilities of committee</li>
+                        <li>Financial discipline & transparency</li>
+                        <li>Redevelopment process awareness</li>
+                        <li>Digital record-keeping</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 7 -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Insurance Services</h3>
+                    <p>We assist in:</p>
+                    <ul>
+                        <li>Society building insurance</li>
+                        <li>Public liability insurance</li>
+                        <li>Lift & machinery insurance</li>
+                        <li>Fire & natural calamity insurance</li>
+                        <li>Personal insurance support for members</li>
+                    </ul>
+                    <p><B>As per mandatory requirements under:</B></p>
+                    <ul>
+                        <li>Bye-law No. 160 – Building Insurance a must for every society</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 8 -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Consultancy for Society Redevelopment</h3>
+                    <p>As per the Maharashtra Government Redevelopment Guidelines & Circulars.</p>
+                    <p><B>We support societies in:</B></p>
+                    <ul>
+                        <li>Feasibility study</li>
+                        <li>Tender drafting</li>
+                        <li>Appointment of Developer / PMC</li>
+                        <li>Legal scrutiny of documents</li>
+                        <li>Member awareness meetings</li>
+                        <li>Compliance before & after redevelopment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose">
+        <div class="container">
+            <h2>Why Choose Raaj Society Solutions?</h2>
+            <div class="benefits">
+                <div class="benefit-item fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>17+ Years Experience</h3>
+                    <p>Extensive experience in housing society domain</p>
+                </div>
+                <div class="benefit-item fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h3>Expert Team</h3>
+                    <p>Professional team of Accountants, Legal Advisors, Tax Consultants & Auditors</p>
+                </div>
+                <div class="benefit-item fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Timely Services</h3>
+                    <p>Timely, transparent, and accurate services</p>
+                </div>
+                <div class="benefit-item fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>Full Compliance</h3>
+                    <p>Compliance-based working as per all statutory legal provisions</p>
+                </div>
+                <div class="benefit-item fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>End-to-End Solutions</h3>
+                    <p>Complete society management solutions under one roof</p>
+                </div>
+                <div class="benefit-item fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Trusted Partner</h3>
+                    <p>Trusted by multiple housing societies across Mumbai region</p>
+                </div>
+                <div class="benefit-item fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <h3>Affordable Pricing</h3>
+                    <p>Affordable pricing with high professional standards</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Areas Section -->
+    <section class="service-areas">
+        <div class="container">
+            <h2>Our Service Areas</h2>
+            <p style="text-align: center; margin-bottom: 40px;">We proudly serve societies in:</p>
+            <div class="areas-container">
+                <div class="area-item fade-in">
+                    <i class="fas fa-map-marker-alt area-icon"></i>
+                    <span>Mumbai</span>
+                </div>
+                <div class="area-item fade-in">
+                    <i class="fas fa-map-marker-alt area-icon"></i>
+                    <span>Navi Mumbai</span>
+                </div>
+                <div class="area-item fade-in">
+                    <i class="fas fa-map-marker-alt area-icon"></i>
+                    <span>Panvel</span>
+                </div>
+                <div class="area-item fade-in">
+                    <i class="fas fa-map-marker-alt area-icon"></i>
+                    <span>Thane</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Vision Section -->
+    <section class="mission-vision">
+        <div class="container">
+            <div class="mv-container">
+                <div class="mv-card fade-in">
+                    <div class="mv-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>To bring professionalism, transparency, and legal compliance in the functioning of co-operative housing societies, while providing reliable and affordable solutions.</p>
+                </div>
+                <div class="mv-card fade-in">
+                    <div class="mv-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>To be a leading support organization for Co-operative Housing Societies in Maharashtra, delivering all financial, legal, and statutory services under one roof.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@raajsocietySolutions.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                    <p>Address: 123 Society Lane, Mumbai, India</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="about-me.html">About Me</a></p>
+                    <p><a href="about-us.html">About Us</a></p>
+                    <p><a href="contact.html">Contact</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal Compliance</h3>
+                    <p>Maharashtra Co-operative Societies Act, 1960</p>
+                    <p>Maharashtra Co-operative Societies Rules, 1961</p>
+                    <p>Model Bye-laws of Co-operative Housing Societies</p>
+                </div>
+                 <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <p>
+                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" style="color: white;"><i class="fab fa-instagram"></i></a>
+                    </p>
+                </div>
+            </div>
+            <!-- <div class="footer-bottom">
+                <p>&copy; 2023 Raaj Society Solutions - Professional Statutory Audit Services. All rights reserved.</p>
+            </div> -->
+        </div>
+    </footer>
+
+    <script>
+        // Fade in animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            
+            // Check on load
+            fadeInOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', fadeInOnScroll);
+            
+            // Mobile Menu Functionality
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const mobileServicesBtn = document.getElementById('mobile-services-btn');
+            const mobileDropdownContent = document.getElementById('mobile-dropdown-content');
+            const body = document.body;
+            
+            // Toggle mobile menu
+            hamburgerMenu.addEventListener('click', function() {
+                hamburgerMenu.classList.toggle('active');
+                mobileMenuOverlay.classList.toggle('active');
+                
+                // Prevent scrolling when menu is open
+                if (mobileMenuOverlay.classList.contains('active')) {
+                    body.style.overflow = 'hidden';
+                } else {
+                    body.style.overflow = 'auto';
+                }
+            });
+            
+            // Toggle services dropdown in mobile menu
+            mobileServicesBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                mobileDropdownContent.classList.toggle('active');
+                
+                // Rotate the chevron icon
+                const chevron = mobileServicesBtn.querySelector('.fa-chevron-down');
+                if (mobileDropdownContent.classList.contains('active')) {
+                    chevron.style.transform = 'rotate(180deg)';
+                } else {
+                    chevron.style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileMenuOverlay.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburgerMenu.classList.remove('active');
+                    mobileMenuOverlay.classList.remove('active');
+                    body.style.overflow = 'auto';
+                    
+                    // Close dropdown if open
+                    mobileDropdownContent.classList.remove('active');
+                    const chevron = mobileServicesBtn.querySelector('.fa-chevron-down');
+                    chevron.style.transform = 'rotate(0deg)';
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!hamburgerMenu.contains(e.target) && !mobileMenuOverlay.contains(e.target)) {
+                    hamburgerMenu.classList.remove('active');
+                    mobileMenuOverlay.classList.remove('active');
+                    body.style.overflow = 'auto';
+                    
+                    // Close dropdown if open
+                    mobileDropdownContent.classList.remove('active');
+                    const chevron = mobileServicesBtn.querySelector('.fa-chevron-down');
+                    chevron.style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 992) {
+                    // Close mobile menu on desktop
+                    hamburgerMenu.classList.remove('active');
+                    mobileMenuOverlay.classList.remove('active');
+                    body.style.overflow = 'auto';
+                    
+                    // Close dropdown if open
+                    mobileDropdownContent.classList.remove('active');
+                    const chevron = mobileServicesBtn.querySelector('.fa-chevron-down');
+                    chevron.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

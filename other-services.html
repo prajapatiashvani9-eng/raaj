@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other Special Services | Raaj Society Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f9f9f9 0%, #f0f0f0 100%);
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Navigation Styles - Added */
+        .header-nav {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        /* Services Dropdown */
+        .services-dropdown {
+            position: relative;
+        }
+        
+        .services-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: #4a6b40;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .services-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 250px;
+            background-color: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-radius: 10px;
+            padding: 15px 0;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .services-dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-content:before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: 25px;
+            width: 16px;
+            height: 16px;
+            background-color: white;
+            transform: rotate(45deg);
+            box-shadow: -3px -3px 5px rgba(0,0,0,0.04);
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 25px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .dropdown-item:hover {
+            background-color: rgba(74, 107, 64, 0.1);
+            border-left-color: #4a6b40;
+            color: #385230;
+            padding-left: 30px;
+        }
+        
+        .dropdown-icon {
+            width: 30px;
+            color: #4a6b40;
+            font-size: 1.1rem;
+            margin-right: 12px;
+        }
+        
+        .dropdown-item:hover .dropdown-icon {
+            color: #385230;
+        }
+        
+        .dropdown-text {
+            flex: 1;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .dropdown-arrow {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-item:hover .dropdown-arrow {
+            color: #4a6b40;
+            transform: translateX(3px);
+        }
+        
+        /* Contact Button */
+        .contact-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: #4a6b40;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(rgba(74, 107, 64, 0.85), rgba(56, 82, 48, 0.9)), 
+                        url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 40px 0 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .services-header-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 1px, transparent 1px),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px, 40px 40px;
+            opacity: 0.3;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgb(255, 255, 255);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .logo img {
+            width: 80px;
+            height: 80px;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 20px;
+            color: #4a6b40;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* .logo-text {
+            text-align: left;
+        }
+        
+        .logo-text h1 {
+            font-size: 24px;
+            margin: 0;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        } */
+        
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a4b8c;
+        }
+        
+        .logo-text span {
+            color: #ff6b00;
+        }
+        .logo-text p {
+            font-size: 12px;
+            margin: 0;
+            color: #ffd166;
+            font-style: italic;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header-content h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header-content p {
+            font-size: 16px;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .sticker-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .sticker {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: float 3s ease-in-out infinite;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .sticker:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .sticker:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        
+        .sticker:nth-child(3) {
+            animation-delay: 1s;
+        }
+        
+        .sticker:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+        
+        .sticker i {
+            font-size: 18px;
+            color: #ffd166;
+        }
+        
+        /* Home Button */
+        .home-button {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .home-button:hover {
+            transform: scale(1.1);
+            background: white;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .home-button i {
+            font-size: 20px;
+            color: #4a6b40;
+        }
+        
+        /* Intro Section */
+        .intro-section {
+            padding: 50px 0;
+            background: white;
+        }
+        
+        .intro-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .intro-content h3 {
+            font-size: 22px;
+            color: #4a6b40;
+            margin-bottom: 20px;
+        }
+        
+        .intro-content p {
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .legal-highlight {
+            background: linear-gradient(135deg, #f5f9f4 0%, #e8f0e6 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #4a6b40;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .legal-highlight:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .legal-highlight h4 {
+            color: #4a6b40;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .legal-highlight h4 i {
+            color: #ff6b6b;
+        }
+        
+        /* Services Categories */
+        .services-categories {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 28px;
+            color: #4a6b40;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #4a6b40, #385230);
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title p {
+            font-size: 16px;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Categories Grid */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .category-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #4a6b40, #385230);
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover::before {
+            height: 100%;
+            opacity: 0.1;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #4a6b40, #385230);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover .category-icon {
+            transform: rotateY(180deg) scale(1.1);
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        }
+        
+        .category-icon i {
+            font-size: 28px;
+            color: white;
+        }
+        
+        .category-card h3 {
+            color: #4a6b40;
+            margin-bottom: 10px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover h3 {
+            color: #4a6b40;
+        }
+        
+        .category-card p {
+            color: #555;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Services Accordion - FIXED VERSION */
+        .services-accordion {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .accordion-item {
+            border-bottom: 1px solid #eee;
+        }
+        
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+        
+        .accordion-header {
+            padding: 20px 25px;
+            background: #f8f9fa;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .accordion-header:hover {
+            background: #f0f5ef;
+        }
+        
+        .accordion-header.active {
+            background: #4a6b40;
+            color: white;
+        }
+        
+        .accordion-header.active h4 {
+            color: white;
+        }
+        
+        .accordion-header h4 {
+            font-size: 18px;
+            color: #4a6b40;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .accordion-header h4 i {
+            font-size: 20px;
+        }
+        
+        .accordion-toggle {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+            color: #4a6b40;
+        }
+        
+        .accordion-header.active .accordion-toggle {
+            transform: rotate(180deg);
+            color: white;
+        }
+        
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.3s ease;
+            background: white;
+        }
+        
+        .accordion-content.active {
+            padding: 25px;
+            max-height: 2000px; /* Increased to show all content */
+        }
+        
+        .service-list {
+            list-style-type: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .service-list li {
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 3px solid #4a6b40;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .service-list li:hover {
+            background: #f0f5ef;
+            transform: translateX(5px);
+            border-left-color: #ff6b6b;
+        }
+        
+        /* Additional Services Section */
+        .additional-services {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+        
+        .star-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .star-section h3 {
+            font-size: 24px;
+            color: #4a6b40;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .star-section h3 i {
+            color: #ffd700;
+            font-size: 28px;
+        }
+        
+        .additional-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .additional-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+            border-top: 4px solid #ffd700;
+        }
+        
+        .additional-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .additional-card i {
+            font-size: 32px;
+            color: #4a6b40;
+            margin-bottom: 15px;
+        }
+        
+        .additional-card h4 {
+            color: #4a6b40;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .additional-card p {
+            color: #555;
+            font-size: 14px;
+        }
+        
+        /* Compliance Section */
+        .compliance-section {
+            padding: 60px 0;
+            background: white;
+        }
+        
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .compliance-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid #e8f0e6;
+        }
+        
+        .compliance-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #4a6b40, #385230);
+            transition: all 0.3s ease;
+        }
+        
+        .compliance-card:hover::before {
+            height: 100%;
+            opacity: 0.1;
+        }
+        
+        .compliance-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .compliance-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #4a6b40, #385230);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .compliance-card:hover .compliance-icon {
+            transform: rotateY(180deg) scale(1.1);
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        }
+        
+        .compliance-icon i {
+            font-size: 28px;
+            color: white;
+        }
+        
+        .compliance-card h3 {
+            color: #4a6b40;
+            margin-bottom: 10px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .compliance-card:hover h3 {
+            color: #4a6b40;
+        }
+        
+        .compliance-card p {
+            color: #555;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 60px 0;
+            background: linear-gradient(rgba(74, 107, 64, 0.9), rgba(56, 82, 48, 0.9)), 
+                        url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        .cta-content p {
+            font-size: 16px;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .btn-cta {
+            display: inline-block;
+            background: white;
+            color: #4a6b40;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .btn-cta:hover::before {
+            left: 100%;
+        }
+        
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background: #4a6b40;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #ffd166;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ecf0f1;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .footer-section a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .footer-section a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #ffd166;
+            transition: width 0.3s ease;
+        }
+        
+        .footer-section a:hover::after {
+            width: 100%;
+        }
+        
+        .footer-section a:hover {
+            color: #ffd166;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #385230;
+            padding-top: 15px;
+            font-size: 13px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .header-nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .dropdown-content {
+                position: fixed;
+                width: 90%;
+                right: 5%;
+                top: 100px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content h2 {
+                font-size: 22px;
+            }
+            
+            .header-content p {
+                font-size: 14px;
+            }
+            
+            .sticker {
+                padding: 10px 15px;
+                font-size: 12px;
+            }
+            
+            .service-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .home-button {
+                width: 45px;
+                height: 45px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .home-button i {
+                font-size: 18px;
+            }
+            
+            .accordion-content.active {
+                max-height: 4000px; /* Even larger for mobile */
+            }
+            
+            .header-nav {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .logo-container{
+                margin-top: 22px;
+            }
+
+            .services-btn, .contact-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+            }
+            
+            .dropdown-content {
+                position: fixed;
+                width: 90%;
+                right: 5%;
+                top: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Button -->
+    <div class="home-button" onclick="goToHome()">
+        <i class="fas fa-home"></i>
+    </div>
+    
+    <!-- Header Navigation - Added -->
+    <div class="header-nav">
+        <!-- Services Dropdown -->
+        <div class="services-dropdown">
+            <button class="services-btn">
+                <i class="fas fa-cogs"></i> Services <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="accounts-services.html" class="dropdown-item">
+                    <i class="fas fa-file-invoice-dollar dropdown-icon"></i>
+                    <span class="dropdown-text">Accounts Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <a href="audit-services.html" class="dropdown-item">
+                    <i class="fas fa-search-dollar dropdown-icon"></i>
+                    <span class="dropdown-text">Audit Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <a href="statutory-services.html" class="dropdown-item">
+                    <i class="fas fa-balance-scale dropdown-icon"></i>
+                    <span class="dropdown-text">Statutory Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <a href="educational-services.html" class="dropdown-item">
+                    <i class="fas fa-chalkboard-teacher dropdown-icon"></i>
+                    <span class="dropdown-text">Awareness & Training Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <a href="insurance-services.html" class="dropdown-item">
+                    <i class="fas fa-shield-alt dropdown-icon"></i>
+                    <span class="dropdown-text">Insurance Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <a href="legal-consultancy.html" class="dropdown-item">
+                    <i class="fas fa-gavel dropdown-icon"></i>
+                    <span class="dropdown-text">Legal Consultancy</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <a href="taxation-consultancy.html" class="dropdown-item">
+                    <i class="fas fa-calculator dropdown-icon"></i>
+                    <span class="dropdown-text">Taxation Consultancy</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <a href="election-services.html" class="dropdown-item">
+                    <i class="fas fa-tasks dropdown-icon"></i>
+                    <span class="dropdown-text">Election Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Contact Button -->
+        <a href="contact.html" class="contact-btn">
+            <i class="fas fa-envelope"></i> Contact
+        </a>
+    </div>
+    
+    <header>
+        <div class="services-header-pattern"></div>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="img/R LOGO.png" alt="">
+                    <div class="logo-text">
+                        <div class="logo-text">Raaj <span>Society Solutions</span></div>
+                        <!-- <p>SPECIALIZED SOCIETY SERVICES</p> -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-content">
+                <h2>OTHER SPECIAL SERVICES FOR HOUSING SOCIETIES</h2>
+                <p>Comprehensive specialized services to strengthen governance, financial transparency, and statutory compliance</p>
+                
+                <div class="sticker-container">
+                    <div class="sticker">
+                        <i class="fas fa-handshake"></i>
+                        <span>Builder Handover</span>
+                    </div>
+                    <div class="sticker">
+                        <i class="fas fa-file-contract"></i>
+                        <span>Legal Advisory</span>
+                    </div>
+                    <div class="sticker">
+                        <i class="fas fa-balance-scale"></i>
+                        <span>Compliance</span>
+                    </div>
+                    <div class="sticker">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Financial Services</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-content">
+                <h3>Comprehensive Specialized Services for Housing Societies</h3>
+                <p>Raaj Society Solutions offers a wide range of specialized, legally compliant, and documentation-based services designed to strengthen the governance, financial transparency, and statutory compliance of co-operative housing societies.</p>
+                
+                <div class="legal-highlight">
+                    <h4><i class="fas fa-gavel"></i> Legal Compliance Framework</h4>
+                    <p>Our services are guided by the Maharashtra Co-operative Societies Act, 1960, Model Bye-Laws, RERA, MOFA, and relevant administrative circulars, ensuring accuracy, legality, and procedural integrity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="services-categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Service Categories</h2>
+                <p>Comprehensive specialized services organized by category</p>
+            </div>
+            
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Builder Handover</h3>
+                    <p>Complete handover process from builders/developers with legal verification</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>Financial Documents Verification</h3>
+                    <p>Audit and verification of builder accounts and financial statements</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Document Scrutiny</h3>
+                    <p>Verification of all builder-provided and member documents</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Audit & Financial</h3>
+                    <p>Audit preparation, query resolution, and financial compliance</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Statutory Registers</h3>
+                    <p>Preparation and maintenance of statutory I & J registers</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Share Certificates</h3>
+                    <p>Drafting, printing and issuance of share certificates</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-vote-yea"></i>
+                    </div>
+                    <h3>Elections & Committee</h3>
+                    <p>Management committee elections and office bearer appointments</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>Legal Advisory</h3>
+                    <p>General and specialized legal advisory services</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Membership Services</h3>
+                    <p>Admission, transfer, and legal heirship processes</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3>CIDCO Processes</h3>
+                    <p>CIDCO transfer, final order, and mortgage NOC assistance</p>
+                </div>
+				 <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3>Soceity Registration</h3>
+                    <p>Soceity Registration in Co-operation and Non-co-operation</p>
+                </div>
+				 <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3>Conveyance of the Land</h3>
+                    <p>Deemed Conveyance and Conveyance of the Society Land</p>
+                </div>
+            </div>
+            
+            <div class="section-title">
+                <h2>Complete Service Details</h2>
+                <p>Explore all our specialized services in detail</p>
+            </div>
+            
+            <div class="services-accordion">
+                <!-- Accordion Item 1 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4><i class="fas fa-handshake"></i> Builder Handover & Verification Services</h4>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul class="service-list">
+                            <li>Handover Process from Builders/Developers</li>
+                            <li>Verification of Society Accounts from Builders/Developers</li>
+                            <li>Verification of Documents Provided by Builders/Developers</li>
+                            <li>Handover of Building Plans, OC/CC, Agreements, Legal Records</li>
+                            <li>Handover of Service Contracts, NOCs, Insurance & Audit Reports</li>
+                            <li>Handover of Maintenance Deposits, Sinking Fund, and Bank Balances</li>
+                            <li>Verification of conveyance-related documents</li>
+                            <li>Audit of collection & expenditure statements</li>
+                            <li>Verification of maintenance charges & deposits</li>
+                            <li>Financial discrepancies identification and resolution</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Accordion Item 2 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4><i class="fas fa-file-alt"></i> Document Scrutiny & Verification</h4>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul class="service-list">
+                            <li>Scrutiny of Member Documents</li>
+                            <li>Verification of Title Certificates</li>
+                            <li>Verification of Approved Plans</li>
+                            <li>Verification of Commencement Certificates / Occupancy Certificates</li>
+                            <li>Verification of Property Tax Documents</li>
+                            <li>Verification of Completion Certificates</li>
+                            <li>Handover Registers examination</li>
+                            <li>Application forms verification</li>
+                            <li>Agreements for sale scrutiny</li>
+                            <li>KYC compliance verification</li>
+                            <li>Share transfer documents verification</li>
+                            <li>Nomination forms scrutiny</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Accordion Item 3 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4><i class="fas fa-chart-bar"></i> Audit, Financial & Statutory Services</h4>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul class="service-list">
+                            <li>Audit & Financial Legalities assistance</li>
+                            <li>Audit preparation support</li>
+                            <li>Query resolutions assistance</li>
+                            <li>Rectification compliance support</li>
+                            <li>Auditor coordination services</li>
+                            <li>Preparation of Statutory Books ("I" & "J" Registers)</li>
+                            <li>I-Form Register (Share Capital) maintenance</li>
+                            <li>J-Form Register (Membership Records) maintenance</li>
+                            <li>Drafting, Printing & Issuance of Share Certificates</li>
+                            <li>Verification of entitlement for share certificates</li>
+                            <li>Printing as per legal format</li>
+                            <li>Issuance with proper sealing and signatures</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Accordion Item 4 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4><i class="fas fa-vote-yea"></i> Elections, Committee & Governance</h4>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul class="service-list">
+                            <li>Conducting Management Committee Elections</li>
+                            <li>Voter list preparation</li>
+                            <li>Nomination process management</li>
+                            <li>Ballot & counting support</li>
+                            <li>Compliance with statutory procedures</li>
+                            <li>Co-opting Management Committee Members</li>
+                            <li>Guidance for filling casual vacancies and reserved seats</li>
+                            <li>Appointment of Office Bearers</li>
+                            <li>First Committee Meeting assistance</li>
+                            <li>Election of Chairman/Secretary/Treasurer</li>
+                            <li>Drafting resolutions & minutes</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Accordion Item 5 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4><i class="fas fa-gavel"></i> Legal & Advisory Services</h4>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul class="service-list">
+                            <li>Legal Advisory Services</li>
+                            <li>Bye-law interpretations</li>
+                            <li>Dispute advisory</li>
+                            <li>Legal notices drafting</li>
+                            <li>Registrar submissions</li>
+                            <li>Admission of Membership handling</li>
+                            <li>Eligibility verification for membership</li>
+                            <li>KYC & documentation for membership</li>
+                            <li>Resolutions and Register updates</li>
+                            <li>Transfer of Membership management</li>
+                            <li>Sale transfer processes</li>
+                            <li>Nominee transfer handling</li>
+                            <li>Transmission & legal heirship processes</li>
+                            <li>Legal Heirship / Succession Certificate Assistance</li>
+                            <li>Document preparation for legal heirship</li>
+                            <li>Legal heirship procedures guidance</li>
+                            <li>Succession compliance support</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Accordion Item 6 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4><i class="fas fa-landmark"></i> CIDCO & Registration Services</h4>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul class="service-list">
+                            <li>CIDCO Transfer Process handling</li>
+                            <li>Transfer applications management</li>
+                            <li>Verification of documents for CIDCO</li>
+                            <li>Compliance with CIDCO norms</li>
+                            <li>CIDCO Final Order assistance</li>
+                            <li>Assistance in obtaining Final Order for lawful transfer</li>
+                            <li>CIDCO Mortgage NOC support</li>
+                            <li>Documentation and submission for Mortgage NOC</li>
+                            <li>Registration & Compliance support</li>
+                            <li>Registration of society / amendments</li>
+                            <li>Annual returns filing</li>
+                            <li>Filing with Registrar</li>
+                            <li>Statutory compliance registers maintenance</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Accordion Item 7 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4><i class="fas fa-file-contract"></i> Drafting, Conveyance & Disputes</h4>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul class="service-list">
+                            <li>Drafting & Vetting Legal Documents</li>
+                            <li>Agreements drafting and vetting</li>
+                            <li>Indemnities preparation</li>
+                            <li>Declarations drafting</li>
+                            <li>Notices preparation</li>
+                            <li>Resolutions drafting</li>
+                            <li>Affidavits preparation</li>
+                            <li>Conveyance & Redevelopment Legal Assistance</li>
+                            <li>Complete legal support for conveyance</li>
+                            <li>Drafting applications, resolutions, and legal submissions</li>
+                            <li>Redevelopment tendering & agreements</li>
+                            <li>Coordination with legal & government authorities</li>
+                            <li>Handling Disputes & Litigation</li>
+                            <li>Assistance in maintenance charge disputes</li>
+                            <li>Parking dispute resolution</li>
+                            <li>Membership dispute handling</li>
+                            <li>Election disputes resolution</li>
+                            <li>Builder disputes handling</li>
+                            <li>Recovery matters (including 154B-29 proceedings) assistance</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Accordion Item 8 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4><i class="fas fa-users"></i> Meetings, Parking & Repairs</h4>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul class="service-list">
+                            <li>AGM/SGM Legal Support</li>
+                            <li>End-to-end assistance for general meetings</li>
+                            <li>Notice drafting for meetings</li>
+                            <li>Agenda preparation</li>
+                            <li>Minutes drafting</li>
+                            <li>Legal guidance under Sec. 75 and Bye-Laws 93–101</li>
+                            <li>Legal Support for Parking & Allotment Issues</li>
+                            <li>Support for parking disputes as per Bye-Laws 78–84</li>
+                            <li>Allocation procedures guidance</li>
+                            <li>Parking policy drafting</li>
+                            <li>Dispute resolution for parking issues</li>
+                            <li>Major Repairs & Tendering Process</li>
+                            <li>Legal and procedural support for structural repairs</li>
+                            <li>Tender drafting for repairs</li>
+                            <li>Vendor appointment assistance</li>
+                            <li>Contract vetting for repair works</li>
+                            <li>Miscellaneous Legal Services</li>
+                            <li>All other advisory and documentation support</li>
+                            <li>Monthly Billing Calculation</li>
+                            <li>Assistance in monthly maintenance billing as per Bye-Law 69</li>
+                            <li>Service charge breakup preparation</li>
+                            <li>Individual billing assistance</li>
+                            <li>Dues register updates</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="additional-services">
+        <div class="container">
+            <div class="star-section">
+                <h3><i class="fas fa-star"></i> Additional Services for Betterment of Your Society</h3>
+                <p>Enhancing governance and operational efficiency</p>
+            </div>
+            
+            <div class="additional-grid">
+                <div class="additional-card">
+                    <i class="fas fa-user-graduate"></i>
+                    <h4>Society Governance Training</h4>
+                    <p>Comprehensive training programs for committee members on their roles, responsibilities, and legal obligations</p>
+                </div>
+                
+                <div class="additional-card">
+                    <i class="fas fa-bullhorn"></i>
+                    <h4>Awareness Sessions</h4>
+                    <p>Educational sessions for society members on their rights, duties, and best practices in cooperative living</p>
+                </div>
+                
+                <div class="additional-card">
+                    <i class="fas fa-search"></i>
+                    <h4>Compliance Audits</h4>
+                    <p>Detailed audits to detect statutory irregularities and ensure complete regulatory compliance</p>
+                </div>
+                
+                <div class="additional-card">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h4>Policy & SOP Drafting</h4>
+                    <p>Development of comprehensive policies and standard operating procedures for smooth administration</p>
+                </div>
+                
+                <div class="additional-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Insurance Advisory</h4>
+                    <p>Expert guidance on building, liability, and other insurance requirements for complete protection</p>
+                </div>
+                
+                <div class="additional-card">
+                    <i class="fas fa-laptop"></i>
+                    <h4>Digital Record Setup</h4>
+                    <p>Implementation of digital systems for paperless management and efficient record keeping</p>
+                </div>
+                
+                <div class="additional-card">
+                    <i class="fas fa-cogs"></i>
+                    <h4>Internal Controls Framework</h4>
+                    <p>Establishment of robust internal controls to prevent fraud, mismanagement, and financial irregularities</p>
+                </div>
+                
+                <div class="additional-card">
+                    <i class="fas fa-chart-pie"></i>
+                    <h4>Financial Planning</h4>
+                    <p>Strategic financial planning for long-term sustainability and effective fund management</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="compliance-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Legal Compliance Framework</h2>
+                <p>All services guided by comprehensive legal frameworks</p>
+            </div>
+            
+            <div class="compliance-grid">
+                <div class="compliance-card">
+                    <div class="compliance-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>MCS Act, 1960</h3>
+                    <p>Compliance with Maharashtra Co-operative Societies Act, 1960</p>
+                </div>
+                
+                <div class="compliance-card">
+                    <div class="compliance-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Model Bye-Laws</h3>
+                    <p>Adherence to updated Model Bye-Laws for housing societies</p>
+                </div>
+                
+                <div class="compliance-card">
+                    <div class="compliance-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>RERA Regulations</h3>
+                    <p>Compliance with Real Estate Regulatory Authority guidelines</p>
+                </div>
+                
+                <div class="compliance-card">
+                    <div class="compliance-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>MOFA Compliance</h3>
+                    <p>Adherence to Maharashtra Ownership Flats Act requirements</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Access Complete Specialized Services for Your Society</h2>
+                <p>Contact us today for comprehensive specialized services that ensure legal compliance, financial transparency, and smooth governance for your housing society.</p>
+                <a href="contact.html" class="btn-cta">Get Service Consultation</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@raajsocietySolutions.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                    <p>Address: 123 Society Lane, Mumbai, India</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#">Home</a></p>
+                    <p><a href="#">Services</a></p>
+                    <p><a href="#">About Us</a></p>
+                    <p><a href="#">Contact</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal Compliance</h3>
+                    <p>Maharashtra Co-operative Societies Act, 1960</p>
+                    <p>Maharashtra Co-operative Societies Rules, 1961</p>
+                    <p>Model Bye-laws of Co-operative Housing Societies</p>
+                </div>
+                 <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <p>
+                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" style="color: white;"><i class="fab fa-instagram"></i></a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Raaj Society Solutions - Professional Statutory Audit Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Accordion functionality - FIXED VERSION
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            const content = item.querySelector('.accordion-content');
+            const toggle = header.querySelector('.accordion-toggle');
+            
+            // Check if currently active
+            const isActive = header.classList.contains('active');
+            
+            // Close all other accordion items
+            document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                if (otherItem !== item) {
+                    const otherHeader = otherItem.querySelector('.accordion-header');
+                    const otherContent = otherItem.querySelector('.accordion-content');
+                    const otherToggle = otherItem.querySelector('.accordion-toggle');
+                    
+                    otherHeader.classList.remove('active');
+                    otherContent.classList.remove('active');
+                    otherToggle.style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // Toggle current item
+            if (!isActive) {
+                header.classList.add('active');
+                content.classList.add('active');
+                toggle.style.transform = 'rotate(180deg)';
+            } else {
+                header.classList.remove('active');
+                content.classList.remove('active');
+                toggle.style.transform = 'rotate(0deg)';
+            }
+        }
+        
+        // Initialize with first accordion open
+        document.addEventListener('DOMContentLoaded', function() {
+            // Open first accordion by default
+            const firstAccordion = document.querySelector('.accordion-header');
+            if (firstAccordion) {
+                toggleAccordion(firstAccordion);
+            }
+            
+            // Animation for service cards
+            const categoryCards = document.querySelectorAll('.category-card');
+            categoryCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            // Animation for additional cards
+            const additionalCards = document.querySelectorAll('.additional-card');
+            additionalCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            // Animation for compliance cards
+            const complianceCards = document.querySelectorAll('.compliance-card');
+            complianceCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements for animation
+            categoryCards.forEach(card => observer.observe(card));
+            additionalCards.forEach(card => observer.observe(card));
+            complianceCards.forEach(card => observer.observe(card));
+            
+            // Mobile dropdown functionality - Added
+            const servicesBtn = document.querySelector('.services-btn');
+            const dropdownContent = document.querySelector('.dropdown-content');
+            
+            // For mobile devices, toggle dropdown on click
+            if (window.innerWidth <= 992) {
+                servicesBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Toggle dropdown visibility
+                    if (dropdownContent.style.opacity === '1') {
+                        dropdownContent.style.opacity = '0';
+                        dropdownContent.style.visibility = 'hidden';
+                        dropdownContent.style.transform = 'translateY(10px)';
+                    } else {
+                        dropdownContent.style.opacity = '1';
+                        dropdownContent.style.visibility = 'visible';
+                        dropdownContent.style.transform = 'translateY(0)';
+                    }
+                });
+                
+                // Close dropdown when clicking elsewhere
+                document.addEventListener('click', function(e) {
+                    if (!servicesBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
+                        dropdownContent.style.opacity = '0';
+                        dropdownContent.style.visibility = 'hidden';
+                        dropdownContent.style.transform = 'translateY(10px)';
+                    }
+                });
+            }
+        });
+        
+        // Home button functionality
+        function goToHome() {
+            window.location.href = "index.html";
+        }
+        
+        // Service list item hover effect
+        document.querySelectorAll('.service-list li').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(5px)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0)';
+            });
+        });
+        
+        // Category card hover effect
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('.category-icon i');
+                icon.style.transform = 'scale(1.2)';
+                icon.style.transition = 'transform 0.3s ease';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                const icon = this.querySelector('.category-icon i');
+                icon.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

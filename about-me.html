@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - N. Gangadhar (Raaj Sir) | RAAJ Society Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Previous styles remain same, adding new styles for mobile menu */
+
+        /* Mobile Menu Styles */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1002;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-container {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 400px;
+            height: 100%;
+            background: white;
+            z-index: 1002;
+            padding: 20px;
+            overflow-y: auto;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-menu-container.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        .mobile-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .mobile-logo span {
+            color: var(--accent);
+        }
+
+        .close-menu-btn {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--gray);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-menu-btn:hover {
+            background-color: var(--light);
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mobile-nav-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            text-decoration: none;
+            color: var(--dark);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .mobile-nav-item:hover {
+            background-color: rgba(26, 75, 140, 0.08);
+            border-left-color: var(--accent);
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .mobile-nav-item i {
+            width: 30px;
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .mobile-services-dropdown {
+            position: relative;
+        }
+
+        .mobile-services-toggle {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 15px;
+            color: var(--dark);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .mobile-services-toggle:hover {
+            background-color: rgba(26, 75, 140, 0.08);
+            border-left-color: var(--accent);
+            color: var(--primary);
+        }
+
+        .mobile-services-toggle i:first-child {
+            width: 30px;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .mobile-services-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding-left: 20px;
+        }
+
+        .mobile-services-menu.active {
+            max-height: 500px;
+        }
+
+        .mobile-service-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: var(--dark);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            margin: 5px 0;
+        }
+
+        .mobile-service-item:hover {
+            background-color: rgba(26, 75, 140, 0.05);
+            color: var(--primary);
+            padding-left: 20px;
+        }
+
+        .mobile-service-item i {
+            width: 25px;
+            margin-right: 10px;
+            font-size: 1rem;
+            color: var(--primary);
+        }
+
+        .mobile-contact-info {
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--light);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .mobile-contact-info h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .mobile-contact-info p {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .mobile-contact-info i {
+            color: var(--primary);
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .nav-buttons {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .header-content {
+                padding: 12px 0;
+            }
+
+            .logo-text {
+                font-size: 1.5rem;
+            }
+
+            .logo-container img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .mobile-menu-container {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .logo-text {
+                font-size: 1.3rem;
+            }
+
+            .hero {
+                padding: 150px 0 80px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animation for mobile menu items */
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .mobile-nav-item,
+        .mobile-services-toggle,
+        .mobile-service-item {
+            animation: slideInRight 0.3s ease forwards;
+            opacity: 0;
+        }
+
+        .mobile-nav-item:nth-child(1) { animation-delay: 0.1s; }
+        .mobile-nav-item:nth-child(2) { animation-delay: 0.15s; }
+        .mobile-nav-item:nth-child(3) { animation-delay: 0.2s; }
+        .mobile-services-toggle { animation-delay: 0.25s; }
+        .mobile-service-item:nth-child(1) { animation-delay: 0.3s; }
+        .mobile-service-item:nth-child(2) { animation-delay: 0.35s; }
+        .mobile-service-item:nth-child(3) { animation-delay: 0.4s; }
+        .mobile-service-item:nth-child(4) { animation-delay: 0.45s; }
+        .mobile-service-item:nth-child(5) { animation-delay: 0.5s; }
+        .mobile-service-item:nth-child(6) { animation-delay: 0.55s; }
+        .mobile-service-item:nth-child(7) { animation-delay: 0.6s; }
+        .mobile-service-item:nth-child(8) { animation-delay: 0.65s; }
+        .mobile-service-item:nth-child(9) { animation-delay: 0.7s; }
+
+        /* Rest of your existing CSS remains the same */
+        /* Base Styles */
+        :root {
+            --primary: #1a4b8c;
+            --secondary: #2a6fdb;
+            --accent: #ff6b00;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-container img {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-right: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+        
+        .logo:hover {
+            transform: rotate(10deg) scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo-text span {
+            color: var(--accent);
+        }
+        
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .home-btn, .services-btn, .contact-btn, .about-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .home-btn:hover, .services-btn:hover, .contact-btn:hover, .about-btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        /* Services Dropdown */
+        .services-dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 280px;
+            background-color: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-radius: 10px;
+            padding: 15px 0;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+        
+        .services-dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-content:before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 25px;
+            width: 16px;
+            height: 16px;
+            background-color: white;
+            transform: rotate(45deg);
+            box-shadow: -3px -3px 5px rgba(0,0,0,0.04);
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 25px;
+            text-decoration: none;
+            color: var(--dark);
+            transition: var(--transition);
+            border-left: 4px solid transparent;
+        }
+        
+        .dropdown-item:hover {
+            background-color: rgba(26, 75, 140, 0.05);
+            border-left-color: var(--accent);
+            color: var(--primary);
+            padding-left: 30px;
+        }
+        
+        .dropdown-icon {
+            width: 30px;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-right: 12px;
+        }
+        
+        .dropdown-item:hover .dropdown-icon {
+            color: var(--accent);
+        }
+        
+        .dropdown-text {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .dropdown-arrow {
+            font-size: 0.8rem;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+        
+        .dropdown-item:hover .dropdown-arrow {
+            color: var(--accent);
+            transform: translateX(3px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,202.7C672,203,768,181,864,170.7C960,160,1056,160,1152,170.7C1248,181,1344,203,1392,213.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero h1:after {
+            background: var(--accent);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+        
+        .tagline {
+            font-style: italic;
+            font-weight: 300;
+            margin-top: 20px;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+        
+        /* Profile Section */
+        .profile {
+            background-color: white;
+        }
+        
+        .profile-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        
+        .profile-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            max-width: 350px;
+            height: 400px;
+            background-color: var(--light);
+            border-radius: 10px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            border: 3px dashed var(--gray);
+        }
+        .image-placeholder img{
+            height: 500px;
+            width: 300px;
+        }
+        .image-placeholder:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .image-placeholder i {
+            font-size: 4rem;
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        .image-placeholder p {
+            color: var(--gray);
+            font-weight: 500;
+        }
+        
+        .profile-details {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .profile-title {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .profile-name {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .profile-role {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .profile-bio {
+            margin-bottom: 30px;
+        }
+        
+        .highlight-box {
+            background-color: var(--light);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary);
+            transition: var(--transition);
+        }
+        
+        .highlight-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        /* Expertise Section */
+        .expertise {
+            background-color: var(--light);
+        }
+        
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .expertise-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .expertise-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .expertise-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .expertise-card:hover:before {
+            width: 100%;
+            opacity: 0.1;
+        }
+        
+        .expertise-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .expertise-card:hover .expertise-icon {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+        
+        .expertise-card h3 {
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+        
+        .expertise-card:hover h3 {
+            color: var(--secondary);
+        }
+        
+        /* Services Section */
+        .services {
+            background-color: white;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .service-card:hover:before {
+            width: 100%;
+            opacity: 0.1;
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-icon {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+        
+        .service-card h3 {
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover h3 {
+            color: var(--secondary);
+        }
+        
+        /* Philosophy Section */
+        .philosophy {
+            background-color: var(--light);
+            text-align: center;
+        }
+        
+        .quote {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .quote:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .quote:before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 5rem;
+            color: var(--primary);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+        
+        .quote-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--dark);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .quote-author {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #ffd166;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ecf0f1;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .footer-section a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .footer-section a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #ffd166;
+            transition: width 0.3s ease;
+        }
+        
+        .footer-section a:hover::after {
+            width: 100%;
+        }
+        
+        .footer-section a:hover {
+            color: #ffd166;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #2a5298;
+            padding-top: 15px;
+            font-size: 13px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-buttons {
+                display: none;
+            }
+            
+            .dropdown-content {
+                position: fixed;
+                width: 90%;
+                left: 5%;
+                top: 120px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero{
+                padding: 130px 0 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .header-content {
+                padding: 10px 0;
+            }
+            
+            .profile-name {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo-text {
+                font-size: 1.3rem;
+            }
+            
+            .logo-container img {
+                width: 50px;
+                height: 50px;
+                font-size: 1rem;
+                margin-right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile Menu Container -->
+    <div class="mobile-menu-container" id="mobileMenuContainer">
+        <div class="mobile-menu-header">
+            <div class="mobile-logo">Raaj <span>Society Solutions</span></div>
+            <button class="close-menu-btn" id="closeMenuBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="mobile-nav">
+            <a href="index.html" class="mobile-nav-item">
+                <i class="fas fa-home"></i> Home
+            </a>
+            
+            <!-- Mobile Services Dropdown -->
+            <div class="mobile-services-dropdown">
+                <button class="mobile-services-toggle" id="mobileServicesToggle">
+                    <i class="fas fa-cogs"></i> Services <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="mobile-services-menu" id="mobileServicesMenu">
+                    <a href="accounts-services.html" class="mobile-service-item">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        Accounts Writing Services
+                    </a>
+                    <a href="audit-services.html" class="mobile-service-item">
+                        <i class="fas fa-search-dollar"></i>
+                        Audit Services
+                    </a>
+                    <a href="statutory-services.html" class="mobile-service-item">
+                        <i class="fas fa-balance-scale"></i>
+                        Statutory Services
+                    </a>
+                    <a href="educational-services.html" class="mobile-service-item">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        Educational & Awareness Services
+                    </a>
+                    <a href="insurance-services.html" class="mobile-service-item">
+                        <i class="fas fa-shield-alt"></i>
+                        Insurance Services
+                    </a>
+                    <a href="legal-consultancy.html" class="mobile-service-item">
+                        <i class="fas fa-gavel"></i>
+                        Legal Consultancy
+                    </a>
+                    <a href="taxation-consultancy.html" class="mobile-service-item">
+                        <i class="fas fa-calculator"></i>
+                        Taxation Consultancy
+                    </a>
+                    <a href="election-services.html" class="mobile-service-item">
+                        <i class="fas fa-tasks"></i>
+                        Election Services
+                    </a>
+                </div>
+            </div>
+            
+            <a href="about-us.html" class="mobile-nav-item">
+                <i class="fas fa-users"></i> About Us
+            </a>
+            
+            <a href="contact.html" class="mobile-nav-item">
+                <i class="fas fa-envelope"></i> Contact
+            </a>
+        </div>
+        
+        <div class="mobile-contact-info">
+            <h4>Contact Info</h4>
+            <p><i class="fas fa-phone"></i> +91 720 818 2007</p>
+            <p><i class="fas fa-envelope"></i> raajsocietyhub.in</p>
+            <p><i class="fas fa-map-marker-alt"></i> Navi Mumbai, Maharashtra</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <img src="img/R LOGO.png" alt="Raaj Society Solutions Logo">
+                    <div class="logo-text">Raaj <span>Society Solutions</span></div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="nav-buttons">
+                    <a href="index.html" class="home-btn">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    
+                    <!-- Services Dropdown -->
+                    <div class="services-dropdown">
+                        <button class="services-btn">
+                            <i class="fas fa-cogs"></i> Services <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="accounts-services.html" class="dropdown-item">
+                                <i class="fas fa-file-invoice-dollar dropdown-icon"></i>
+                                <span class="dropdown-text">Accounts Writing Services</span>
+                                <i class="fas fa-chevron-right dropdown-arrow"></i>
+                            </a>
+                            <a href="audit-services.html" class="dropdown-item">
+                                <i class="fas fa-search-dollar dropdown-icon"></i>
+                                <span class="dropdown-text">Audit Services</span>
+                                <i class="fas fa-chevron-right dropdown-arrow"></i>
+                            </a>
+                            <a href="statutory-services.html" class="dropdown-item">
+                                <i class="fas fa-balance-scale dropdown-icon"></i>
+                                <span class="dropdown-text">Statutory Services</span>
+                                <i class="fas fa-chevron-right dropdown-arrow"></i>
+                            </a>
+                            <a href="educational-services.html" class="dropdown-item">
+                                <i class="fas fa-chalkboard-teacher dropdown-icon"></i>
+                                <span class="dropdown-text">Awareness & Training Services</span>
+                                <i class="fas fa-chevron-right dropdown-arrow"></i>
+                            </a>
+                            <a href="insurance-services.html" class="dropdown-item">
+                                <i class="fas fa-shield-alt dropdown-icon"></i>
+                                <span class="dropdown-text">Insurance Services</span>
+                                <i class="fas fa-chevron-right dropdown-arrow"></i>
+                            </a>
+                            <a href="legal-consultancy.html" class="dropdown-item">
+                                <i class="fas fa-gavel dropdown-icon"></i>
+                                <span class="dropdown-text">Legal Consultancy</span>
+                                <i class="fas fa-chevron-right dropdown-arrow"></i>
+                            </a>
+                            <a href="taxation-consultancy.html" class="dropdown-item">
+                                <i class="fas fa-calculator dropdown-icon"></i>
+                                <span class="dropdown-text">Taxation Consultancy</span>
+                                <i class="fas fa-chevron-right dropdown-arrow"></i>
+                            </a>
+                            <a href="election-services.html" class="dropdown-item">
+                                <i class="fas fa-tasks dropdown-icon"></i>
+                                <span class="dropdown-text">Election Services</span>
+                                <i class="fas fa-chevron-right dropdown-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <a href="about-us.html" class="contact-btn">
+                        <i class="fas fa-users"></i> About Us
+                    </a>
+                    
+                    <a href="contact.html" class="contact-btn">
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Rest of your HTML content remains the same -->
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>About Me</h1>
+                <p>Founder & Proprietor – Raaj Society Solutions</p>
+                <p class="tagline">17+ Years of Dedicated Service to Co-operative Housing Societies</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section class="profile">
+        <div class="container">
+            <div class="profile-content">
+                <div class="profile-image fade-in">
+                    <div class="image-placeholder">
+                        <i class="fas fa-user-tie"></i>
+                        <!-- <img src="img/generated-image.png" alt=""> -->
+                        <p>N. Gangadhar (Raaj Sir) Photo</p>
+                    </div>
+                    <div class="profile-role">Founder & Proprietor</div>
+                    <div class="profile-role">Raaj Society Solutions <br>(Established 2008)</div>
+                </div>
+                <div class="profile-details">
+                    <h2 class="profile-title">ABOUT ME</h2>
+                    <h1 class="profile-name">N. Gangadhar (Raaj Sir)</h1>
+                    
+                    <div class="profile-bio">
+                        <p>I am <strong> N. Gangadhar (Raaj Sir),</strong> a legal, accounting, and statutory compliance professional with more than 17 years of experience in serving Co-operative Housing Societies across Mumbai, Navi Mumbai, Panvel & Thane.</p>
+                        <p>My expertise lies in providing end-to-end solutions in society administration, accounts, audit, taxation, legal advisory, documentation, and CIDCO-related matters.</p>
+                    </div>
+                    
+                    <div class="highlight-box fade-in">
+                        <h3>Education & Credentials</h3>
+                        <p>I hold a <strong>B.COM, LL.B, LL.M, G.D.C&A & CA (Inter)</strong> and have in-depth practical knowledge of:</p>
+                        <ul>
+                            <li>Maharashtra Co-operative Societies Act, 1960</li>
+                            <li>Maharashtra Co-operative Societies Rules, 1961</li>
+                            <li>Model Bye-laws of Co-operative Housing Societies</li>
+                            <li>MOFA, RERA & CIDCO Regulations</li>
+                            <li>Municipal and Statutory Compliance Framework</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight-box fade-in">
+                        <h3>Professional Background</h3>
+                        <p>With a strong foundation built through <strong>co-operative & district court practice</strong> and with senior legal experts, I bring a unique combination of:</p>
+                        <ul>
+                            <li>Legal Expertise</li>
+                            <li>Accounting Knowledge</li>
+                            <li>Statutory Compliance Skills</li>
+                        </ul>
+                        <p>This enables me to deliver professional, transparent, and fully compliance services to all types of housing societies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section class="expertise">
+        <div class="container">
+            <h2>Areas of Expertise</h2>
+            <div class="expertise-grid">
+                <div class="expertise-card fade-in">
+                    <div class="expertise-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>Legal Expertise</h3>
+                    <p>Deep understanding of Co-operative Society laws, regulations, and compliance requirements with practical court experience.</p>
+                </div>
+                
+                <div class="expertise-card fade-in">
+                    <div class="expertise-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Accounting & Finance</h3>
+                    <p>Comprehensive financial management including billing, accounts, audits, and taxation for housing societies.</p>
+                </div>
+                
+                <div class="expertise-card fade-in">
+                    <div class="expertise-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3>Statutory Compliance</h3>
+                    <p>Ensuring full compliance with all statutory requirements under MCS Act, GST, TDS, and other regulations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2>Services to Housing Societies</h2>
+            <p style="text-align: center; margin-bottom: 40px;">Over the years, I have assisted numerous co-operative housing societies in:</p>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>Accounting & Billing</h3>
+                    <p>Complete financial management including monthly maintenance billing, ledger maintenance, and financial reporting.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-search-dollar"></i>
+                    </div>
+                    <h3>Statutory Audits & Rectification</h3>
+                    <p>Comprehensive audit support and rectification of audit observations as per legal requirements.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-vote-yea"></i>
+                    </div>
+                    <h3>Elections & Office Bearer Appointments</h3>
+                    <p>Guidance and support for society elections and proper appointment of office bearers.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-registered"></i>
+                    </div>
+                    <h3>Society Registration & Compliance</h3>
+                    <p>Assistance with new society registration and ongoing compliance with statutory requirements.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Builder-to-Society Handover</h3>
+                    <p>Smooth transition from builder to society management with proper documentation and legal formalities.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Conveyance & Redevelopment</h3>
+                    <p>Expert guidance on conveyance deeds and complete redevelopment process management.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Membership & Transfer Matters</h3>
+                    <p>Proper handling of membership applications, transfers, nominations, and related documentation.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>Dispute Resolution</h3>
+                    <p>Effective resolution of society disputes through legal channels and amicable settlements.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-file-signature"></i>
+                    </div>
+                    <h3>CIDCO Permission, Transfer & NOCs</h3>
+                    <p>Assistance with CIDCO-related permissions, transfers, and No Objection Certificates.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h3>Legal Drafting & Documentation</h3>
+                    <p>Professional drafting of agreements, resolutions, notices, and other legal documents.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>AGM & SGM Meetings</h3>
+                    <p>Proper conduct of Annual General Meetings and Special General Meetings as per legal requirements.</p>
+                </div>
+				
+				<div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-parking"></i>
+                    </div>
+                    <h3>Parking Issues</h3>
+                    <p>Proper guidance and solution of parking as per legal requirements & society bye-laws.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy">
+        <div class="container">
+            <h2>My Professional Philosophy</h2>
+            <div class="quote fade-in">
+                <p class="quote-text">"Accuracy, Transparency & Legally Compliant Service Delivery."</p>
+                <p class="quote-author">- N. Gangadhar (Raaj Sir)</p>
+            </div>
+            
+            <div style="max-width: 800px; margin: 50px auto 0;">
+                <p class="fade-in">I believe housing societies need professional support that combines legal understanding with financial discipline, and my work focuses on ensuring societies operate smoothly, transparently, and within the legal framework.</p>
+                <p class="fade-in">With the establishment of Raaj Society Solutions, my aim is to bring awareness, professionalism, and accountability to housing society management and to help societies function efficiently with complete peace of mind.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@raajsocietySolutions.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                    <p>Address: 123 Society Lane, Mumbai, India</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="about-me.html">About Me</a></p>
+                    <p><a href="about-us.html">About Us</a></p>
+                    <p><a href="contact.html">Contact</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal Compliance</h3>
+                    <p>Maharashtra Co-operative Societies Act, 1960</p>
+                    <p>Maharashtra Co-operative Societies Rules, 1961</p>
+                    <p>Model Bye-laws of Co-operative Housing Societies</p>
+                </div>
+                 <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <p>
+                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" style="color: white;"><i class="fab fa-instagram"></i></a>
+                    </p>
+                </div>
+            </div>
+            <!-- <div class="footer-bottom">
+                <p>&copy; 2023 Raaj Society Solutions - Professional Statutory Audit Services. All rights reserved.</p>
+            </div> -->
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const mobileMenuContainer = document.getElementById('mobileMenuContainer');
+        const mobileServicesToggle = document.getElementById('mobileServicesToggle');
+        const mobileServicesMenu = document.getElementById('mobileServicesMenu');
+
+        // Open mobile menu
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuOverlay.classList.add('active');
+            mobileMenuContainer.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+
+        // Close mobile menu
+        function closeMobileMenu() {
+            mobileMenuOverlay.classList.remove('active');
+            mobileMenuContainer.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+            
+            // Close services dropdown if open
+            mobileServicesMenu.classList.remove('active');
+            mobileServicesToggle.querySelector('.fa-chevron-down').style.transform = 'rotate(0deg)';
+        }
+
+        closeMenuBtn.addEventListener('click', closeMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+        // Toggle services dropdown in mobile menu
+        mobileServicesToggle.addEventListener('click', () => {
+            mobileServicesMenu.classList.toggle('active');
+            const chevron = mobileServicesToggle.querySelector('.fa-chevron-down');
+            
+            if (mobileServicesMenu.classList.contains('active')) {
+                chevron.style.transform = 'rotate(180deg)';
+            } else {
+                chevron.style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // Close menu when clicking on a link (except services toggle)
+        document.querySelectorAll('.mobile-nav-item, .mobile-service-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (!e.target.closest('.mobile-services-toggle')) {
+                    closeMobileMenu();
+                }
+            });
+        });
+
+        // Keyboard support - close menu on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenuContainer.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+
+        // Fade in animation on scroll (existing code)
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            
+            // Check on load
+            fadeInOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', fadeInOnScroll);
+            
+            // Desktop services dropdown hover functionality
+            const servicesBtn = document.querySelector('.services-btn');
+            const dropdownContent = document.querySelector('.dropdown-content');
+            
+            if (window.innerWidth > 992) {
+                // Desktop behavior - hover
+                servicesBtn.addEventListener('mouseenter', () => {
+                    dropdownContent.style.opacity = '1';
+                    dropdownContent.style.visibility = 'visible';
+                    dropdownContent.style.transform = 'translateY(0)';
+                });
+
+                document.querySelector('.services-dropdown').addEventListener('mouseleave', () => {
+                    dropdownContent.style.opacity = '0';
+                    dropdownContent.style.visibility = 'hidden';
+                    dropdownContent.style.transform = 'translateY(10px)';
+                });
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            // Close mobile menu if open on resize to desktop
+            if (window.innerWidth > 992 && mobileMenuContainer.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+    </script>
+</body>
+</html>

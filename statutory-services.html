@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statutory Books & Compliance Services | Raaj Society Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Navigation Styles - Added */
+        .header-nav {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        /* Services Dropdown */
+        .services-dropdown {
+            position: relative;
+        }
+        
+        .services-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: #1a5276;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .services-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 250px;
+            background-color: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-radius: 10px;
+            padding: 15px 0;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .services-dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-content:before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: 25px;
+            width: 16px;
+            height: 16px;
+            background-color: white;
+            transform: rotate(45deg);
+            box-shadow: -3px -3px 5px rgba(0,0,0,0.04);
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 25px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .dropdown-item:hover {
+            background-color: rgba(26, 82, 118, 0.1);
+            border-left-color: #1a5276;
+            color: #2c3e50;
+            padding-left: 30px;
+        }
+        
+        .dropdown-icon {
+            width: 30px;
+            color: #1a5276;
+            font-size: 1.1rem;
+            margin-right: 12px;
+        }
+        
+        .dropdown-item:hover .dropdown-icon {
+            color: #2c3e50;
+        }
+        
+        .dropdown-text {
+            flex: 1;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .dropdown-arrow {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-item:hover .dropdown-arrow {
+            color: #1a5276;
+            transform: translateX(3px);
+        }
+        
+        /* Contact Button */
+        .contact-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: #1a5276;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1a5276 0%, #2c3e50 100%);
+            color: white;
+            padding: 40px 0 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,192C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgb(255, 255, 255);
+            backdrop-filter: blur(10px);
+            padding: 12px 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .logo img {
+            width: 80px;
+            height: 80px;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 22px;
+            color: #1a5276;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a4b8c;
+        }
+        
+        .logo-text span {
+            color: #ff6b00;
+        }
+
+        .logo-text p {
+            font-size: 13px;
+            margin: 0;
+            color: #f1c40f;
+            font-style: italic;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .header-content h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out;
+            color: #ffffff;
+        }
+        
+        .header-content p {
+            font-size: 17px;
+            margin-bottom: 25px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        .sticker-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .sticker {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .sticker:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        
+        .sticker:nth-child(3) {
+            animation-delay: 1s;
+        }
+        
+        .sticker i {
+            font-size: 22px;
+            color: #f1c40f;
+        }
+        
+        /* Home Button */
+        .home-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .home-button:hover {
+            transform: scale(1.1);
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+        }
+        
+        .home-button i {
+            font-size: 22px;
+            color: #1a5276;
+        }
+        
+        /* Main Content Sections */
+        .services-intro {
+            padding: 60px 0 40px;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background: linear-gradient(135deg, #1a5276, #2c3e50);
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title p {
+            font-size: 17px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .legal-reference {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 4px solid #1a5276;
+        }
+        
+        .legal-reference h3 {
+            color: #1a5276;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .legal-reference h3 i {
+            color: #1a5276;
+        }
+        
+        .legal-reference p {
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+        
+        /* Services Sections */
+        .services-section {
+            padding: 60px 0;
+        }
+        
+        .services-section:nth-child(even) {
+            background: white;
+        }
+        
+        .services-section:nth-child(odd) {
+            background: #f8f9fa;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border-top: 4px solid #1a5276;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-number {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            background: #1a5276;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .service-content h3 {
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-size: 20px;
+            font-weight: 600;
+            padding-right: 40px;
+        }
+        
+        .service-content p {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+        
+        .compliance-list {
+            list-style-type: none;
+            margin-top: 15px;
+        }
+        
+        .compliance-list li {
+            padding: 8px 0;
+            color: #555;
+            border-bottom: 1px dashed #eee;
+            position: relative;
+            padding-left: 22px;
+            font-size: 14px;
+        }
+        
+        .compliance-list li:before {
+            content: "✓";
+            color: #1a5276;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #1a5276 0%, #2c3e50 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 32px;
+            margin-bottom: 18px;
+            color: white;
+        }
+        
+        .cta-content p {
+            font-size: 17px;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .btn-cta {
+            display: inline-block;
+            background: white;
+            color: #1a5276;
+            text-decoration: none;
+            padding: 11px 28px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 17px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 35px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 230px;
+        }
+        
+        .footer-section h3 {
+            font-size: 19px;
+            margin-bottom: 18px;
+            color: #1a5276;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ecf0f1;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .footer-section a {
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: #1a5276;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            padding-top: 18px;
+            font-size: 13px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .services-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .header-nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .dropdown-content {
+                position: fixed;
+                width: 90%;
+                right: 5%;
+                top: 100px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 26px;
+            }
+            
+            .section-title p {
+                font-size: 15px;
+            }
+            
+            .header-content h2 {
+                font-size: 26px;
+            }
+            
+            .header-content p {
+                font-size: 15px;
+            }
+            
+            .home-button {
+                width: 45px;
+                height: 45px;
+                top: 15px;
+                left: 15px;
+            }
+            
+            .home-button i {
+                font-size: 18px;
+            }
+
+            .logo-container{
+                margin-top: 24px;
+            }
+            
+            .logo {
+                padding: 10px 18px;
+            }
+            
+            .logo-text h1 {
+                font-size: 20px;
+            }
+            
+            .logo-text p {
+                font-size: 11px;
+            }
+            
+            .header-nav {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .services-btn, .contact-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+            }
+            
+            .dropdown-content {
+                position: fixed;
+                width: 90%;
+                right: 5%;
+                top: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Button -->
+    <div class="home-button" onclick="goToHome()">
+        <i class="fas fa-home"></i>
+    </div>
+    
+    <!-- Header Navigation - Added -->
+    <div class="header-nav">
+        <!-- Services Dropdown -->
+        <div class="services-dropdown">
+            <button class="services-btn">
+                <i class="fas fa-cogs"></i> Services <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="accounts-services.html" class="dropdown-item">
+                    <i class="fas fa-file-invoice-dollar dropdown-icon"></i>
+                    <span class="dropdown-text">Accounts Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <a href="audit-services.html" class="dropdown-item">
+                    <i class="fas fa-search-dollar dropdown-icon"></i>
+                    <span class="dropdown-text">Audit Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <!-- <a href="statutory-services.html" class="dropdown-item">
+                    <i class="fas fa-balance-scale dropdown-icon"></i>
+                    <span class="dropdown-text">Statutory Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a> -->
+                <a href="educational-services.html" class="dropdown-item">
+                    <i class="fas fa-chalkboard-teacher dropdown-icon"></i>
+                    <span class="dropdown-text">Awareness & Training Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <a href="insurance-services.html" class="dropdown-item">
+                    <i class="fas fa-shield-alt dropdown-icon"></i>
+                    <span class="dropdown-text">Insurance Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <a href="legal-consultancy.html" class="dropdown-item">
+                    <i class="fas fa-gavel dropdown-icon"></i>
+                    <span class="dropdown-text">Legal Consultancy</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <a href="taxation-consultancy.html" class="dropdown-item">
+                    <i class="fas fa-calculator dropdown-icon"></i>
+                    <span class="dropdown-text">Taxation Consultancy</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <a href="election-services.html" class="dropdown-item">
+                    <i class="fas fa-tasks dropdown-icon"></i>
+                    <span class="dropdown-text">Election Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <a href="other-services.html" class="dropdown-item">
+                    <i class="fas fa-tasks dropdown-icon"></i>
+                    <span class="dropdown-text">Other Special Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Contact Button -->
+        <a href="contact.html" class="contact-btn">
+            <i class="fas fa-envelope"></i> Contact
+        </a>
+    </div>
+    
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="img/R LOGO.png" alt="Raaj Society Solutions Logo">
+                    <div class="logo-text">
+                        <div class="logo-text">Raaj <span>Society Solutions</span></div>
+                        <!-- <p>COMPLETE STATUTORY COMPLIANCE SOLUTIONS</p> -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-content">
+                <h2>STATUTORY BOOKS & COMPLIANCE SERVICES</h2>
+                <p>Ensuring full compliance with Maharashtra Co-operative Societies Act, Rules, and Bye-laws</p>
+                
+                <div class="sticker-container">
+                    <div class="sticker">
+                        <i class="fas fa-book"></i>
+                        <span>Statutory Books</span>
+                    </div>
+                    <div class="sticker">
+                        <i class="fas fa-balance-scale"></i>
+                        <span>Legal Compliance</span>
+                    </div>
+                    <div class="sticker">
+                        <i class="fas fa-file-contract"></i>
+                        <span>Documentation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <section class="services-intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>Professional Statutory Management</h2>
+                <p>We maintain, update, and verify all statutory registers and records as required under the Maharashtra Co-operative Societies Act, 1960, the Maharashtra Co-operative Societies Rules, 1961, and the Model Bye-laws of Co-operative Housing Societies.</p>
+            </div>
+            
+            <div class="legal-reference">
+                <h3><i class="fas fa-gavel"></i> Legal Requirements</h3>
+                <p>Proper maintenance of statutory books is a legal obligation for every registered Co-operative Housing Society under <strong>Section 73, 79, and 165 of the MCS Act</strong>, and improper maintenance may lead to penalties, inquiries, and administrative actions from the Registrar.</p>
+                <p>We ensure that all statutory records are accurate, updated, and maintained in compliance with Government norms.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="services-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Statutory Books Services</h2>
+                <p>Comprehensive maintenance and management of all required statutory registers</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-number">1</div>
+                    <div class="service-content">
+                        <h3>Membership / Application Forms</h3>
+                        <p>We prepare, maintain, and verify all membership forms as per Model Bye-laws and Rule 19 of the MCS Rules, ensuring compliance in admission, transfer, and cessation of membership.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-number">2</div>
+                    <div class="service-content">
+                        <h3>Individual Member Files</h3>
+                        <p>Comprehensive creation and maintenance of individual member files containing documents, applications, resolutions, share records, and correspondence.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-number">3</div>
+                    <div class="service-content">
+                        <h3>Document Scrutiny</h3>
+                        <p>Detailed scrutiny of legal documents such as agreements, deeds, indemnities, nomination papers, share transfers, ensuring compliance with Bye-laws and statutory rules.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card">
+                    <div class="service-number">4</div>
+                    <div class="service-content">
+                        <h3>Membership Verification</h3>
+                        <p>Verification of member eligibility, application completeness, identity proof, and compliance under MCS Act, Bye-laws, and Registrar guidelines.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card">
+                    <div class="service-number">5</div>
+                    <div class="service-content">
+                        <h3>Inward Register</h3>
+                        <p>Maintenance of society's inward register for tracking applications, letters, and documents received from members, authorities, and vendors.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card">
+                    <div class="service-number">6</div>
+                    <div class="service-content">
+                        <h3>Outward Register</h3>
+                        <p>Recording and tracking all communications issued by the society including notices, NOCs, letters, and statutory submissions.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 7 -->
+                <div class="service-card">
+                    <div class="service-number">7</div>
+                    <div class="service-content">
+                        <h3>Transfer Register</h3>
+                        <p>Preparation and updating of transfer register as per Rule 23 of MCS Rules for all share and interest transfers in the society.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 8 -->
+                <div class="service-card">
+                    <div class="service-number">8</div>
+                    <div class="service-content">
+                        <h3>Share / Members Register</h3>
+                        <p>Updating the statutory members' register (Form "I/U" format) containing membership details, allotments, transfers, resignations, expulsions, and related records.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 9 -->
+                <div class="service-card">
+                    <div class="service-number">9</div>
+                    <div class="service-content">
+                        <h3>"I" Form Register</h3>
+                        <p>Maintenance of Form "I" Register reflecting all changes in membership position submitted to the Registrar.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 10 -->
+                <div class="service-card">
+                    <div class="service-number">10</div>
+                    <div class="service-content">
+                        <h3>"J" Form Register</h3>
+                        <p>Preparation of Form "J" for issuing Share Certificates, allotment entries, and share ownership details.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 11 -->
+                <div class="service-card">
+                    <div class="service-number">11</div>
+                    <div class="service-content">
+                        <h3>Nomination Forms</h3>
+                        <p>Assistance in filling, scrutinizing, and recording nomination forms as per Section 30 of the MCS Act and Bye-law 32.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 12 -->
+                <div class="service-card">
+                    <div class="service-number">12</div>
+                    <div class="service-content">
+                        <h3>Nomination Register</h3>
+                        <p>Maintaining updated nomination register reflecting nominee details for legal inheritance purposes.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 13 -->
+                <div class="service-card">
+                    <div class="service-number">13</div>
+                    <div class="service-content">
+                        <h3>Sinking Fund Register</h3>
+                        <p>Recording contributions to sinking fund for major repairs and future capital expenditure, as required under Bye-law 13(a).</p>
+                    </div>
+                </div>
+                
+                <!-- Service 14 -->
+                <div class="service-card">
+                    <div class="service-number">14</div>
+                    <div class="service-content">
+                        <h3>Repairs & Maintenance Fund Register</h3>
+                        <p>Detailed maintenance of Repairs Fund and expenditure tracking as per Bye-laws and accounting standards.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 15 -->
+                <div class="service-card">
+                    <div class="service-number">15</div>
+                    <div class="service-content">
+                        <h3>Fixed Assets Register</h3>
+                        <p>Preparation of asset register showing society's fixed assets, valuation, purchase details, and maintenance status.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 16 -->
+                <div class="service-card">
+                    <div class="service-number">16</div>
+                    <div class="service-content">
+                        <h3>Dead Stock Register</h3>
+                        <p>Maintenance of dead stock register for office equipment, machinery, tools, and society assets.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 17 -->
+                <div class="service-card">
+                    <div class="service-number">17</div>
+                    <div class="service-content">
+                        <h3>Investment Register</h3>
+                        <p>Maintaining investment records in conformity with Bye-law provisions and Section 70 of the MCS Act.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 18 -->
+                <div class="service-card">
+                    <div class="service-number">18</div>
+                    <div class="service-content">
+                        <h3>Property Register</h3>
+                        <p>Complete documentation of society property including land, building, amenities, open spaces, and common areas.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 19 -->
+                <div class="service-card">
+                    <div class="service-number">19</div>
+                    <div class="service-content">
+                        <h3>Lien / Loan Register</h3>
+                        <p>Entry and management of loan or lien information on flats/members as per banking norms and society approval records.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 20 -->
+                <div class="service-card">
+                    <div class="service-number">20</div>
+                    <div class="service-content">
+                        <h3>Share Certificates</h3>
+                        <p>Preparation, verification, updating, and issue of Share Certificates in accordance with Model Bye-law 23 and Rule 23.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="services-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Statutory Compliance Services</h2>
+                <p>Ensuring full compliance with statutory obligations placed on Co-operative Housing Societies</p>
+            </div>
+            
+            <div class="legal-reference">
+                <h3><i class="fas fa-exclamation-triangle"></i> Importance of Compliance</h3>
+                <p>Regular statutory compliance helps societies avoid penalties, inquiries, disputes, and administrative actions under <strong>Sections 75, 79, 81, 146, and 147 of the MCS Act</strong>.</p>
+                <p>We ensure compliance with Registrar Circulars, Government Notifications, and all relevant statutory requirements.</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Compliance Service A -->
+                <div class="service-card">
+                    <div class="service-content">
+                        <h3>Drafting of AGM / SGM / MCM Notices</h3>
+                        <p>Preparation of legally compliant notices for:</p>
+                        <ul class="compliance-list">
+                            <li>Annual General Meetings (Section 75)</li>
+                            <li>Special General Meetings</li>
+                            <li>Managing Committee Meetings</li>
+                        </ul>
+                        <p>Notices are drafted in accordance with statutory timelines and prescribed formats.</p>
+                    </div>
+                </div>
+                
+                <!-- Compliance Service B -->
+                <div class="service-card">
+                    <div class="service-content">
+                        <h3>Drafting of AGM / SGM / MCM Minutes</h3>
+                        <p>Recording, drafting, and finalizing minutes as per:</p>
+                        <ul class="compliance-list">
+                            <li>Rule 115 of MCS Rules</li>
+                            <li>Model Bye-laws</li>
+                            <li>Registrar's instructions</li>
+                        </ul>
+                        <p>Ensuring accuracy, transparency, and legal acceptance.</p>
+                    </div>
+                </div>
+                
+                <!-- Compliance Service C -->
+                <div class="service-card">
+                    <div class="service-content">
+                        <h3>Sale / Transfer / Bank / Residence NOCs</h3>
+                        <p>Drafting and issuing all types of NOCs including:</p>
+                        <ul class="compliance-list">
+                            <li>Sale / Transfer NOC</li>
+                            <li>Banker's NOC for mortgage</li>
+                            <li>Residence / Letter of Authority</li>
+                            <li>Redevelopment-related NOCs</li>
+                            <li>Share transfer endorsements</li>
+                        </ul>
+                        <p>All NOCs are prepared as per Bye-law requirements and legal documentation norms.</p>
+                    </div>
+                </div>
+                
+                <!-- Compliance Service D -->
+                <div class="service-card">
+                    <div class="service-content">
+                        <h3>Membership Transfer & Nomination Updates</h3>
+                        <p>Execution and recording of membership changes, share transfers, inheritance entries, and nomination effects following Rule 23 and Model Bye-laws.</p>
+                        <ul class="compliance-list">
+                            <li>Smooth Shift of Ownership</li>
+                            <li>Rule-Based Process</li>
+                            <li>Paperwork First, Approval Next</li>
+                            <li>Nominee Steps In</li>
+                            <li>Register Refresh</li>
+                            <li>Zero Confusion Zone</li>
+                            <li>Transparency Guaranteed</li>
+                        </ul>
+
+                    </div>
+                </div>
+                
+                <!-- Compliance Service E -->
+                <div class="service-card">
+                    <div class="service-content">
+                        <h3>Statutory Books Updating</h3>
+                        <p>Regular updating of:</p>
+                        <ul class="compliance-list">
+                            <li>Registers</li>
+                            <li>Share entries</li>
+                            <li>Nomination records</li>
+                            <li>Sinking fund & repair fund</li>
+                            <li>I & J forms</li>
+                            <li>Member files</li>
+                        </ul>
+                        <p>Ensuring timely compliance with Registrar requirements.</p>
+                    </div>
+                </div>
+                
+                <!-- Compliance Service F -->
+                <div class="service-card">
+                    <div class="service-content">
+                        <h3>Correspondence Drafting</h3>
+                        <p>Drafting letters, replies, notices, reminders, complaints, and communications with:</p>
+                        <ul class="compliance-list">
+                            <li>Registrar Office</li>
+                            <li>Municipal authorities</li>
+                            <li>Banks</li>
+                            <li>Members</li>
+                            <li>Service providers</li>
+                        </ul>
+                        <p>All correspondence is legally structured and documented.</p>
+                    </div>
+                </div>
+                
+                <!-- Compliance Service G -->
+                <div class="service-card">
+                    <div class="service-content">
+                        <h3>Many More Compliance Services</h3>
+                        <p>Including but not limited to:</p>
+                        <ul class="compliance-list">
+                            <li>Compliance related to Elections (SCRA 2014)</li>
+                            <li>Documentation for conveyance</li>
+                            <li>Redevelopment legal paperwork</li>
+                            <li>Registrar submissions</li>
+                            <li>Digital record-keeping and legal scrutiny</li>
+                            <li>Yearly compliance advisory</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ensure Your Society's Legal Compliance</h2>
+                <p>Contact us today for professional statutory book maintenance and compliance services tailored to your housing society's needs.</p>
+                <a href="contact.html" class="btn-cta">Schedule a Consultation</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@raajsocietySolutions.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                    <p>Address: 123 Society Lane, Mumbai, India</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#">Home</a></p>
+                    <p><a href="#">Services</a></p>
+                    <p><a href="#">About Us</a></p>
+                    <p><a href="#">Contact</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal Compliance</h3>
+                    <p>Maharashtra Co-operative Societies Act, 1960</p>
+                    <p>Maharashtra Co-operative Societies Rules, 1961</p>
+                    <p>Model Bye-laws of Co-operative Housing Societies</p>
+                </div>
+                 <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <p>
+                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" style="color: white;"><i class="fab fa-instagram"></i></a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Raaj Society Solutions - Professional Statutory Audit Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Add scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe service cards for animation
+            const serviceCards = document.querySelectorAll('.service-card');
+            serviceCards.forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+            
+            // Mobile dropdown functionality - Added
+            const servicesBtn = document.querySelector('.services-btn');
+            const dropdownContent = document.querySelector('.dropdown-content');
+            
+            // For mobile devices, toggle dropdown on click
+            if (window.innerWidth <= 992) {
+                servicesBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Toggle dropdown visibility
+                    if (dropdownContent.style.opacity === '1') {
+                        dropdownContent.style.opacity = '0';
+                        dropdownContent.style.visibility = 'hidden';
+                        dropdownContent.style.transform = 'translateY(10px)';
+                    } else {
+                        dropdownContent.style.opacity = '1';
+                        dropdownContent.style.visibility = 'visible';
+                        dropdownContent.style.transform = 'translateY(0)';
+                    }
+                });
+                
+                // Close dropdown when clicking elsewhere
+                document.addEventListener('click', function(e) {
+                    if (!servicesBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
+                        dropdownContent.style.opacity = '0';
+                        dropdownContent.style.visibility = 'hidden';
+                        dropdownContent.style.transform = 'translateY(10px)';
+                    }
+                });
+            }
+        });
+        
+        // Home button functionality
+        function goToHome() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

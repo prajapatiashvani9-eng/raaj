@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxation Consultancy Services | Raaj Society Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Navigation Styles - Added */
+        .header-nav {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        /* Services Dropdown */
+        .services-dropdown {
+            position: relative;
+        }
+        
+        .services-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: #1a3c6e;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .services-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 250px;
+            background-color: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-radius: 10px;
+            padding: 15px 0;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .services-dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-content:before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: 25px;
+            width: 16px;
+            height: 16px;
+            background-color: white;
+            transform: rotate(45deg);
+            box-shadow: -3px -3px 5px rgba(0,0,0,0.04);
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 25px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .dropdown-item:hover {
+            background-color: rgba(26, 60, 110, 0.1);
+            border-left-color: #1a3c6e;
+            color: #2a5298;
+            padding-left: 30px;
+        }
+        
+        .dropdown-icon {
+            width: 30px;
+            color: #1a3c6e;
+            font-size: 1.1rem;
+            margin-right: 12px;
+        }
+        
+        .dropdown-item:hover .dropdown-icon {
+            color: #2a5298;
+        }
+        
+        .dropdown-text {
+            flex: 1;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .dropdown-arrow {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-item:hover .dropdown-arrow {
+            color: #1a3c6e;
+            transform: translateX(3px);
+        }
+        
+        /* Contact Button */
+        .contact-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: #1a3c6e;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Header Styles with Image Background */
+        header {
+            background: linear-gradient(rgba(40, 75, 99, 0.85), rgba(25, 52, 65, 0.9)), 
+                        url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 40px 0 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: white;
+            backdrop-filter: blur(10px);
+            padding: 12px 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .logo img {
+            width: 80px;
+            height: 80px;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 22px;
+            color: #3498db;
+            box-shadow: 0 4px 8px rgba(4, 8, 255, 0.4); 
+        }
+        
+        /* .logo-text {
+            text-align: left;
+        }
+        
+        .logo-text h1 {
+            font-size: 26px;
+            margin: 0;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        } */
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a4b8c;
+        }
+        
+        .logo-text span {
+            color: #ff6b00;
+        }
+        
+        .logo-text p {
+            font-size: 12px;
+            margin: 0;
+            color: #ffd166;
+            font-style: italic;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header-content h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header-content p {
+            font-size: 16px;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .sticker-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .sticker {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: float 3s ease-in-out infinite;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .sticker:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .sticker:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        
+        .sticker:nth-child(3) {
+            animation-delay: 1s;
+        }
+        
+        .sticker:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+        
+        .sticker i {
+            font-size: 18px;
+            color: #ffd166;
+        }
+        
+        /* Home Button */
+        .home-button {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .home-button:hover {
+            transform: scale(1.1);
+            background: white;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .home-button i {
+            font-size: 20px;
+            color: #2a5298;
+        }
+        
+        /* Intro Section */
+        .intro-section {
+            padding: 50px 0;
+            background: white;
+        }
+        
+        .intro-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .intro-content h3 {
+            font-size: 22px;
+            color: #1a3c6e;
+            margin-bottom: 20px;
+        }
+        
+        .intro-content p {
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #2a5298;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .highlight-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Services Section */
+        .tax-services {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 28px;
+            color: #1a3c6e;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #2a5298, #1a3c6e);
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title p {
+            font-size: 16px;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Service Cards with Images and Hover Effects */
+        .tax-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .tax-service-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border-top: 4px solid #2a5298;
+            position: relative;
+        }
+        
+        .tax-service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-card-header {
+            height: 180px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(26, 60, 110, 0.7), rgba(42, 82, 152, 0.8));
+            z-index: 1;
+            transition: all 0.4s ease;
+        }
+        
+        .tax-service-card:hover .service-card-header::before {
+            background: linear-gradient(rgba(26, 60, 110, 0.9), rgba(42, 82, 152, 0.95));
+        }
+        
+        .service-card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: all 0.6s ease;
+        }
+        
+        .tax-service-card:hover .service-card-bg {
+            transform: scale(1.1);
+        }
+        
+        .service-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px;
+            z-index: 2;
+            color: white;
+        }
+        
+        .service-card-content h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        
+        .service-card-content p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .service-card-body {
+            padding: 25px;
+            flex: 1;
+        }
+        
+        .service-card-body ul {
+            list-style-type: none;
+        }
+        
+        .service-card-body li {
+            padding: 10px 0;
+            color: #555;
+            border-bottom: 1px dashed #eee;
+            position: relative;
+            padding-left: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card-body li:hover {
+            color: #2a5298;
+            transform: translateX(5px);
+        }
+        
+        .service-card-body li:before {
+            content: "▸";
+            color: #2a5298;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card-body li:hover:before {
+            transform: translateX(5px);
+            color: #ff6b6b;
+        }
+        
+        .service-card-footer {
+            padding: 0 25px 25px;
+            margin-top: auto;
+        }
+        
+        .benefit-tag {
+            display: inline-block;
+            background: #e9f7fe;
+            color: #2a5298;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-tag:hover {
+            background: #2a5298;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.3);
+        }
+        
+        /* All Taxation Services Special Card */
+        .all-tax-card {
+            grid-column: span 2;
+            border-top: 4px solid #ff6b6b;
+        }
+        
+        @media (max-width: 768px) {
+            .all-tax-card {
+                grid-column: span 1;
+            }
+            
+            .header-nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .dropdown-content {
+                position: fixed;
+                width: 90%;
+                right: 5%;
+                top: 100px;
+            }
+        }
+        
+        .all-tax-card .service-card-header::before {
+            background: linear-gradient(rgba(255, 107, 107, 0.7), rgba(255, 142, 142, 0.8));
+        }
+        
+        .all-tax-card:hover .service-card-header::before {
+            background: linear-gradient(rgba(255, 107, 107, 0.9), rgba(255, 82, 82, 0.95));
+        }
+        
+        .service-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .feature-item {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            border-left: 3px solid #2a5298;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-left-color: #ff6b6b;
+        }
+        
+        /* Compliance Section */
+        .compliance-section {
+            padding: 60px 0;
+            background: white;
+        }
+        
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .compliance-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .compliance-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #2a5298, #1a3c6e);
+            transition: all 0.3s ease;
+        }
+        
+        .compliance-card:hover::before {
+            height: 100%;
+            opacity: 0.1;
+        }
+        
+        .compliance-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .compliance-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #2a5298, #1a3c6e);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .compliance-card:hover .compliance-icon {
+            transform: rotateY(180deg) scale(1.1);
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        }
+        
+        .compliance-icon i {
+            font-size: 28px;
+            color: white;
+        }
+        
+        .compliance-card h3 {
+            color: #1a3c6e;
+            margin-bottom: 10px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .compliance-card:hover h3 {
+            color: #2a5298;
+        }
+        
+        .compliance-card p {
+            color: #555;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .compliance-card:hover p {
+            color: #333;
+        }
+        
+        /* Image Gallery Section */
+        .image-gallery {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 60, 110, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-overlay h4 {
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 60px 0;
+            background: linear-gradient(rgba(26, 60, 110, 0.9), rgba(42, 82, 152, 0.9)), 
+                        url('https://images.unsplash.com/photo-1554224154-22dec7ec8818?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        .cta-content p {
+            font-size: 16px;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .btn-cta {
+            display: inline-block;
+            background: white;
+            color: #2a5298;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .btn-cta:hover::before {
+            left: 100%;
+        }
+        
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a3c6e;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #ffd166;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ecf0f1;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .footer-section a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .footer-section a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #ffd166;
+            transition: width 0.3s ease;
+        }
+        
+        .footer-section a:hover::after {
+            width: 100%;
+        }
+        
+        .footer-section a:hover {
+            color: #ffd166;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #2a5298;
+            padding-top: 15px;
+            font-size: 13px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-content h2 {
+                font-size: 22px;
+            }
+            
+            .header-content p {
+                font-size: 14px;
+            }
+            
+            .sticker {
+                padding: 10px 15px;
+                font-size: 12px;
+            }
+            
+            .tax-services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .home-button {
+                width: 45px;
+                height: 45px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .home-button i {
+                font-size: 18px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .header-nav {
+                top: 10px;
+                right: 10px;
+            }
+
+            .logo-container{
+                margin-top: 22px;
+            }
+            
+            .services-btn, .contact-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+            }
+            
+            .dropdown-content {
+                position: fixed;
+                width: 90%;
+                right: 5%;
+                top: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Button -->
+    <div class="home-button" onclick="goToHome()">
+        <i class="fas fa-home"></i>
+    </div>
+    
+    <!-- Header Navigation - Added -->
+    <div class="header-nav">
+        <!-- Services Dropdown -->
+        <div class="services-dropdown">
+            <button class="services-btn">
+                <i class="fas fa-cogs"></i> Services <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="accounts-services.html" class="dropdown-item">
+                    <i class="fas fa-file-invoice-dollar dropdown-icon"></i>
+                    <span class="dropdown-text">Accounts Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <a href="audit-services.html" class="dropdown-item">
+                    <i class="fas fa-search-dollar dropdown-icon"></i>
+                    <span class="dropdown-text">Audit Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <a href="statutory-services.html" class="dropdown-item">
+                    <i class="fas fa-balance-scale dropdown-icon"></i>
+                    <span class="dropdown-text">Statutory Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <a href="educational-services.html" class="dropdown-item">
+                    <i class="fas fa-chalkboard-teacher dropdown-icon"></i>
+                    <span class="dropdown-text">Awareness & Training Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <a href="insurance-services.html" class="dropdown-item">
+                    <i class="fas fa-shield-alt dropdown-icon"></i>
+                    <span class="dropdown-text">Insurance Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <a href="legal-consultancy.html" class="dropdown-item">
+                    <i class="fas fa-gavel dropdown-icon"></i>
+                    <span class="dropdown-text">Legal Consultancy</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <!-- <a href="taxation-consultancy.html" class="dropdown-item">
+                    <i class="fas fa-calculator dropdown-icon"></i>
+                    <span class="dropdown-text">Taxation Consultancy</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a> -->
+                <a href="election-services.html" class="dropdown-item">
+                    <i class="fas fa-tasks dropdown-icon"></i>
+                    <span class="dropdown-text">Election Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+                <a href="other-services.html" class="dropdown-item">
+                    <i class="fas fa-tasks dropdown-icon"></i>
+                    <span class="dropdown-text">Other Special Services</span>
+                    <i class="fas fa-chevron-right dropdown-arrow"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Contact Button -->
+        <a href="contact.html" class="contact-btn">
+            <i class="fas fa-envelope"></i> Contact
+        </a>
+    </div>
+    
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="img/R LOGO.png" alt="">
+                    <div class="logo-text">
+                        <div class="logo-text">Raaj <span>Society Solutions</span></div>
+                        <!-- <p>TAXATION CONSULTANCY SPECIALISTS</p> -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-content">
+                <h2>TAXATION CONSULTANCY SERVICES FOR HOUSING SOCIETIES</h2>
+                <p>Comprehensive taxation advisory and compliance services exclusively designed for Co-operative Housing Societies</p>
+                
+                <div class="sticker-container">
+                    <div class="sticker">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>Income Tax</span>
+                    </div>
+                    <div class="sticker">
+                        <i class="fas fa-percentage"></i>
+                        <span>TDS Filing</span>
+                    </div>
+                    <div class="sticker">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>GST Compliance</span>
+                    </div>
+                    <div class="sticker">
+                        <i class="fas fa-balance-scale"></i>
+                        <span>Tax Advisory</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-content">
+                <h3>Complete Tax Compliance for Housing Societies</h3>
+                <p>Raaj Society Solutions provides comprehensive taxation advisory and compliance services exclusively designed for Co-operative Housing Societies, ensuring full adherence to the Income Tax Act, 1961, the Goods and Services Tax Act, 2017, TDS provisions, and all other statutory requirements applicable to societies.</p>
+                
+                <div class="highlight-box">
+                    <p>Our services help societies avoid penalties, comply with audit and filing rules, and maintain transparent financial governance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="tax-services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Taxation Services</h2>
+                <p>End-to-end tax compliance and advisory solutions for housing societies</p>
+            </div>
+            
+            <div class="tax-services-grid">
+                <!-- Income Tax Services Card -->
+                <div class="tax-service-card">
+                    <div class="service-card-header">
+                        <div class="service-card-bg" style="background-image: url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="service-card-content">
+                            <h3>Income Tax Registration & Filing</h3>
+                            <p>Complete ITR compliance for housing societies</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card-body">
+                        <p>We assist housing societies in all Income Tax–related compliance as per the Income Tax Act, 1961, including:</p>
+                        
+                        <ul>
+                            <li>PAN Application / Corrections</li>
+                            <li>Obtaining & Updating 12A / 80P Exemptions</li>
+                            <li>Income Tax Return (ITR) Preparation & Filing</li>
+                            <li>Computation of Taxable Income</li>
+                            <li>Application of Section 80P Deductions for CHS</li>
+                            <li>Responding to IT Notices & Scrutiny Assessments</li>
+                            <li>Tallying records for audit compliance</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card-footer">
+                        <div class="benefit-tag">
+                            <i class="fas fa-check-circle"></i> Accurate declarations & maximized exemptions
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TDS Services Card -->
+                <div class="tax-service-card">
+                    <div class="service-card-header">
+                        <div class="service-card-bg" style="background-image: url('https://images.unsplash.com/photo-1554224154-22dec7ec8818?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="service-card-content">
+                            <h3>TDS Registration & Filing</h3>
+                            <p>Complete TDS compliance and management</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card-body">
+                        <p>Housing societies are required to deduct and deposit TDS on various payments. We provide complete services including:</p>
+                        
+                        <ul>
+                            <li>TAN Registration / Corrections</li>
+                            <li>Monthly TDS Deduction Calculations</li>
+                            <li>Preparation & Filing of Quarterly TDS Returns</li>
+                            <li>Generation of TDS Certificates (Form 16A)</li>
+                            <li>Correction Statements & Default Rectification</li>
+                            <li>Ensuring compliance to avoid penalties</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card-footer">
+                        <div class="benefit-tag">
+                            <i class="fas fa-check-circle"></i> Timely compliance for all TDS obligations
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- GST Services Card -->
+                <div class="tax-service-card">
+                    <div class="service-card-header">
+                        <div class="service-card-bg" style="background-image: url('https://images.unsplash.com/photo-1554224154-26032ffc8dbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="service-card-content">
+                            <h3>GST Registration & Filing</h3>
+                            <p>Complete GST compliance for societies</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card-body">
+                        <p>Where applicable, societies must comply with GST norms. We offer comprehensive GST services:</p>
+                        
+                        <ul>
+                            <li>GST Registration (if threshold exceeded)</li>
+                            <li>Monthly / Quarterly GST Return Filing</li>
+                            <li>Input Tax Credit (ITC) verification</li>
+                            <li>Reconciliation of books with GST portal</li>
+                            <li>Responding to GST notices and inquiries</li>
+                            <li>Advisory on GST applicability</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card-footer">
+                        <div class="benefit-tag">
+                            <i class="fas fa-check-circle"></i> Full compliance with evolving GST rules
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- All Taxation Services Card -->
+                <div class="tax-service-card all-tax-card">
+                    <div class="service-card-header">
+                        <div class="service-card-bg" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="service-card-content">
+                            <h3>All Taxation Services</h3>
+                            <p>End-to-end taxation support for housing societies</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card-body">
+                        <p>Raaj Society Solutions provides comprehensive taxation support covering all aspects:</p>
+                        
+                        <div class="service-features-grid">
+                            <div class="feature-item">Tax Planning for Societies</div>
+                            <div class="feature-item">Audit Support for Statutory, GST, & Income Tax Audits</div>
+                            <div class="feature-item">Assessment & Appeal Assistance</div>
+                            <div class="feature-item">Digital Signature Certificate (DSC) Procurement</div>
+                            <div class="feature-item">Financial Records Review for Compliance</div>
+                            <div class="feature-item">Tax Advisory on Capital Projects</div>
+                            <div class="feature-item">Repairs and Contract Payments Advisory</div>
+                            <div class="feature-item">Annual Compliance Calendar Management</div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card-footer">
+                        <div class="benefit-tag">
+                            <i class="fas fa-check-circle"></i> Complete taxation requirement management
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="compliance-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Statutory Compliance Coverage</h2>
+                <p>Ensuring adherence to all relevant taxation laws and regulations</p>
+            </div>
+            
+            <div class="compliance-grid">
+                <div class="compliance-card">
+                    <div class="compliance-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>Income Tax Act, 1961</h3>
+                    <p>Complete compliance with ITR filing, exemptions, deductions, and assessment procedures</p>
+                </div>
+                
+                <div class="compliance-card">
+                    <div class="compliance-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3>GST Act, 2017</h3>
+                    <p>Registration, return filing, ITC management, and compliance with GST regulations</p>
+                </div>
+                
+                <div class="compliance-card">
+                    <div class="compliance-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>TDS Provisions</h3>
+                    <p>Chapter XVII-B compliance, quarterly returns, certificates, and penalty avoidance</p>
+                </div>
+                
+                <div class="compliance-card">
+                    <div class="compliance-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Co-operative Societies Act</h3>
+                    <p>Adherence to state-specific cooperative laws and bye-laws compliance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="image-gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Taxation Expertise</h2>
+                <p>Professional tax consultancy services for housing societies</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tax Consultation" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Expert Tax Consultation</h4>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1554224154-22dec7ec8818?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Financial Planning" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Financial Planning & Strategy</h4>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1554224154-26032ffc8dbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Compliance Management" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Compliance Management</h4>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Audit Support" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Audit & Assessment Support</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Avoid Penalties & Ensure Complete Tax Compliance</h2>
+                <p>Contact us today for a comprehensive tax health check of your housing society and ensure full regulatory compliance.</p>
+                <a href="contact.html" class="btn-cta">Schedule a Consultation</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@raajsocietySolutions.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                    <p>Address: 123 Society Lane, Mumbai, India</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#">Home</a></p>
+                    <p><a href="#">Services</a></p>
+                    <p><a href="#">About Us</a></p>
+                    <p><a href="#">Contact</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal Compliance</h3>
+                    <p>Maharashtra Co-operative Societies Act, 1960</p>
+                    <p>Maharashtra Co-operative Societies Rules, 1961</p>
+                    <p>Model Bye-laws of Co-operative Housing Societies</p>
+                </div>
+                 <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <p>
+                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" style="color: white;"><i class="fab fa-instagram"></i></a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Raaj Society Solutions - Professional Statutory Audit Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Animation for service cards
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize animations for tax service cards
+            const taxServiceCards = document.querySelectorAll('.tax-service-card');
+            taxServiceCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            // Initialize animations for compliance cards
+            const complianceCards = document.querySelectorAll('.compliance-card');
+            complianceCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            // Initialize animations for gallery items
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        
+                        // Add staggered animation for cards
+                        if (entry.target.classList.contains('tax-service-card')) {
+                            const index = Array.from(taxServiceCards).indexOf(entry.target);
+                            entry.target.style.transitionDelay = `${index * 0.1}s`;
+                        }
+                        
+                        if (entry.target.classList.contains('compliance-card')) {
+                            const index = Array.from(complianceCards).indexOf(entry.target);
+                            entry.target.style.transitionDelay = `${index * 0.1}s`;
+                        }
+                        
+                        if (entry.target.classList.contains('gallery-item')) {
+                            const index = Array.from(galleryItems).indexOf(entry.target);
+                            entry.target.style.transitionDelay = `${index * 0.1}s`;
+                        }
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements for animation
+            taxServiceCards.forEach(card => observer.observe(card));
+            complianceCards.forEach(card => observer.observe(card));
+            galleryItems.forEach(item => observer.observe(item));
+            
+            // Mobile dropdown functionality - Added
+            const servicesBtn = document.querySelector('.services-btn');
+            const dropdownContent = document.querySelector('.dropdown-content');
+            
+            // For mobile devices, toggle dropdown on click
+            if (window.innerWidth <= 768) {
+                servicesBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Toggle dropdown visibility
+                    if (dropdownContent.style.opacity === '1') {
+                        dropdownContent.style.opacity = '0';
+                        dropdownContent.style.visibility = 'hidden';
+                        dropdownContent.style.transform = 'translateY(10px)';
+                    } else {
+                        dropdownContent.style.opacity = '1';
+                        dropdownContent.style.visibility = 'visible';
+                        dropdownContent.style.transform = 'translateY(0)';
+                    }
+                });
+                
+                // Close dropdown when clicking elsewhere
+                document.addEventListener('click', function(e) {
+                    if (!servicesBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
+                        dropdownContent.style.opacity = '0';
+                        dropdownContent.style.visibility = 'hidden';
+                        dropdownContent.style.transform = 'translateY(10px)';
+                    }
+                });
+            }
+        });
+        
+        // Home button functionality
+        function goToHome() {
+            window.location.href = "index.html";
+        }
+        
+        // Enhanced hover effects for service cards
+        document.querySelectorAll('.tax-service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.zIndex = '10';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.zIndex = '1';
+            });
+        });
+        
+        // Add click effect to benefit tags
+        document.querySelectorAll('.benefit-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>
