@@ -826,6 +826,293 @@
                 margin-right: 10px;
             }
         }
+
+            /* Team Section */
+    .team-section {
+        background: #f8f9fa;
+    }
+
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+
+    .team-card {
+        background: #ffffff;
+        border-radius: 15px;
+        overflow: hidden;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
+        transition: all 0.35s ease;
+        position: relative;
+    }
+
+    .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .team-photo {
+        width: 100% !important;
+        height: 280px !important;
+        object-fit: cover;
+        margin: 0 !important;
+        box-shadow: none !important;
+        display: block;
+        transition: 0.35s ease;
+    }
+
+    .team-card:hover .team-photo {
+        transform: scale(1.06);
+    }
+
+    .team-image-box {
+        overflow: hidden;
+        position: relative;
+    }
+
+    .team-image-box::after {
+        content: "Click to view details";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        padding: 12px;
+        color: white;
+        background: rgba(26, 75, 140, 0.88);
+        opacity: 0;
+        transition: 0.3s ease;
+        font-weight: 600;
+    }
+
+    .team-card:hover .team-image-box::after {
+        opacity: 1;
+    }
+
+    .team-info {
+        padding: 22px;
+    }
+
+    .team-info h3 {
+        margin-bottom: 8px;
+        color: var(--primary);
+    }
+
+    .team-info p {
+        color: var(--gray);
+        font-size: 15px;
+        margin: 0;
+    }
+
+    /* Team Details Popup */
+    .team-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 3000;
+        background: rgba(0, 0, 0, 0.75);
+        padding: 20px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .team-modal-content {
+        width: min(720px, 100%);
+        max-height: 90vh;
+        overflow-y: auto;
+        background: white;
+        border-radius: 15px;
+        position: relative;
+        padding: 35px;
+        animation: popupShow 0.3s ease;
+    }
+
+    @keyframes popupShow {
+        from {
+            opacity: 0;
+            transform: scale(0.85);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .team-close-btn {
+        position: absolute;
+        top: 14px;
+        right: 16px;
+        width: 38px;
+        height: 38px;
+        border: none;
+        border-radius: 50%;
+        background: #e63946;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .team-modal-body {
+        display: flex;
+        gap: 28px;
+        align-items: center;
+    }
+
+    .team-modal-photo {
+        width: 180px !important;
+        height: 180px !important;
+        object-fit: cover;
+        border-radius: 50%;
+        margin: 0 !important;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.18) !important;
+    }
+
+    .team-modal-text {
+        flex: 1;
+    }
+
+    .team-modal-text h2 {
+        text-align: left;
+        margin-bottom: 8px;
+    }
+
+    .team-modal-text h4 {
+        color: var(--accent);
+        margin-bottom: 15px;
+    }
+
+    .team-modal-text p {
+        color: #555;
+        font-size: 16px;
+    }
+
+    @media (max-width: 600px) {
+        .team-modal-body {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .team-modal-text h2 {
+            text-align: center;
+        }
+
+        .team-photo {
+            height: 250px !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+
+        .team-section {
+            padding: 55px 0;
+        }
+
+        .team-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .team-grid {
+            grid-template-columns: 1fr;
+            gap: 22px;
+        }
+
+        .team-card {
+            max-width: 420px;
+            width: 100%;
+            margin: auto;
+        }
+
+        .team-photo {
+            height: 260px !important;
+        }
+
+        /* Hover text phone me hamesha dikh jayega */
+        .team-image-box::after {
+            opacity: 1;
+            font-size: 14px;
+            padding: 10px;
+            background: rgba(26, 75, 140, 0.85);
+            content: "Tap to view details";
+        }
+
+        /* Popup */
+        .team-modal {
+            padding: 12px;
+            align-items: center;
+        }
+
+        .team-modal-content {
+            width: 100%;
+            max-height: 88vh;
+            padding: 45px 22px 25px;
+            border-radius: 14px;
+        }
+
+        .team-close-btn {
+            top: 10px;
+            right: 10px;
+            width: 36px;
+            height: 36px;
+            font-size: 22px;
+        }
+
+        .team-modal-body {
+            flex-direction: column;
+            text-align: center;
+            gap: 18px;
+        }
+
+        .team-modal-photo {
+            width: 140px !important;
+            height: 140px !important;
+        }
+
+        .team-modal-text h2 {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .team-modal-text h4 {
+            font-size: 1rem;
+            margin-bottom: 14px;
+        }
+
+        .team-modal-text p {
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+    }
+
+    @media (max-width: 400px) {
+
+        .team-photo {
+            height: 225px !important;
+        }
+
+        .team-info {
+            padding: 18px;
+        }
+
+        .team-info h3 {
+            font-size: 1.2rem;
+        }
+
+        .team-modal-content {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        .team-modal-photo {
+            width: 115px !important;
+            height: 115px !important;
+        }
+    }
     </style>
 </head>
 <body>
@@ -844,6 +1131,10 @@
                         <i class="fas fa-home"></i> Home
                     </a>
                     
+                    <a href="about-me.html" class="home-btn">
+                        <i class="fas fa-info-circle"></i> About Me
+                    </a>
+
                     <!-- Services Dropdown -->
                     <div class="services-dropdown">
                         <button class="services-btn">
@@ -1197,6 +1488,81 @@
         </div>
     </section>
 
+    <!-- Our Team Section -->
+    <!-- <section class="team-section">
+        <div class="container">
+
+            <h2>Meet Our Team</h2>
+
+            <div class="team-grid"> -->
+
+                <!-- Team Member 1 -->
+                <!-- <div class="team-card"
+                     onclick="openTeamModal(
+                        'Mr. N. P. Raaj Sir',
+                        'Founder & Certified Auditor',
+                        'img/profile_img_logo.jpeg',
+                        'Mr. N. P. Raaj Sir is an experienced professional in housing society management. He provides guidance related to audits, statutory compliance, society elections, accounts, legal documentation, and administration.'
+                     )">
+
+                    <div class="team-image-box">
+                        <img src="img/profile_img_logo.jpeg"
+                             alt="Mr. N. P. Raaj Sir"
+                             class="team-photo">
+                    </div>
+
+                    <div class="team-info">
+                        <h3>Mr. N. P. Raaj Sir</h3>
+                        <p>Founder & Certified Auditor</p>
+                    </div>
+                </div> -->
+
+                <!-- Team Member 2 -->
+                <!-- <div class="team-card"
+                     onclick="openTeamModal(
+                        'Team Member Name',
+                        'Accounts Manager',
+                        'img/team-member-2.jpg',
+                        'Add this team member’s complete introduction here. Mention their experience, work responsibilities, qualifications, and services they handle for housing societies.'
+                     )">
+
+                    <div class="team-image-box">
+                        <img src="img/team-member-2.jpg"
+                             alt="Accounts Manager"
+                             class="team-photo">
+                    </div>
+
+                    <div class="team-info">
+                        <h3>Team Member Name</h3>
+                        <p>Accounts Manager</p>
+                    </div>
+                </div> -->
+
+                <!-- Team Member 3 -->
+                <!-- <div class="team-card"
+                     onclick="openTeamModal(
+                        'Team Member Name',
+                        'Legal Consultant',
+                        'img/team-member-3.jpg',
+                        'Add this team member’s complete introduction here. Mention their legal experience, society-related knowledge, and the services they provide.'
+                     )">
+
+                    <div class="team-image-box">
+                        <img src="img/team-member-3.jpg"
+                             alt="Legal Consultant"
+                             class="team-photo">
+                    </div>
+
+                    <div class="team-info">
+                        <h3>Team Member Name</h3>
+                        <p>Legal Consultant</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section> -->
+
     <!-- Why Choose Us Section -->
     <section class="why-choose">
         <div class="container">
@@ -1309,9 +1675,9 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Contact Us</h3>
-                    <p>Email: info@raajsocietySolutions.com</p>
-                    <p>Phone: +91 98765 43210</p>
-                    <p>Address: 123 Society Lane, Mumbai, India</p>
+                    <p>Email: info@raajsocietysolutions.in</p>
+                    <p>Phone: +91 7900035507 /919 /918 /128</p>
+                    <p>Address: Office-62, Jai Ganeshji CHS Ltd, PLOT-34, SECTOR-36, KAMOTHE, NAVI MUMBAI - 410209.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -1329,18 +1695,39 @@
                  <div class="footer-section">
                     <h3>Follow Us</h3>
                     <p>
-                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-twitter"></i></a>
-                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" style="color: white;"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/raajsocietysolutions/" style="color: white; margin-right: 15px;"><i class="fab fa-facebook-f"></i></a>
+                        <!-- <a href="https://twitter.com/raajsocietysolutions" style="color: white; margin-right: 15px;"><i class="fab fa-twitter"></i></a> -->
+                        <!-- <a href="https://www.linkedin.com/in/raaj-society-solutions" style="color: white; margin-right: 15px;"><i class="fab fa-linkedin-in"></i></a> -->
+                        <a href="https://www.instagram.com/raaj_society_solutions/" style="color: white;"><i class="fab fa-instagram"></i></a>
                     </p>
                 </div>
             </div>
-            <!-- <div class="footer-bottom">
-                <p>&copy; 2023 Raaj Society Solutions - Professional Statutory Audit Services. All rights reserved.</p>
-            </div> -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 Raaj Society Solutions. All rights reserved.</p>
+            </div>
         </div>
     </footer>
+
+    <!-- Team Details Popup -->
+    <!-- <div class="team-modal" id="teamModal">
+        <div class="team-modal-content">
+        
+            <button class="team-close-btn" onclick="closeTeamModal()">
+                &times;
+            </button>
+        
+            <div class="team-modal-body">
+                <img id="modalTeamPhoto" src="" alt="Team Member" class="team-modal-photo">
+            
+                <div class="team-modal-text">
+                    <h2 id="modalTeamName"></h2>
+                    <h4 id="modalTeamRole"></h4>
+                    <p id="modalTeamDetail"></p>
+                </div>
+            </div>
+        
+        </div>
+    </div> -->
 
     <script>
         // Fade in animation on scroll
@@ -1443,6 +1830,27 @@
                 }
             });
         });
+
+        function openTeamModal(name, role, photo, detail) {
+        document.getElementById("modalTeamName").textContent = name;
+        document.getElementById("modalTeamRole").textContent = role;
+        document.getElementById("modalTeamPhoto").src = photo;
+        document.getElementById("modalTeamDetail").textContent = detail;
+
+        document.getElementById("teamModal").style.display = "flex";
+    }
+
+    function closeTeamModal() {
+        document.getElementById("teamModal").style.display = "none";
+    }
+
+    window.addEventListener("click", function (event) {
+        const teamModal = document.getElementById("teamModal");
+
+        if (event.target === teamModal) {
+            closeTeamModal();
+        }
+    });
     </script>
 </body>
 </html>

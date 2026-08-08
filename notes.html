@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documents & Notes | Raaj Society Solutions</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Raleway:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="style/all_page_style.css">
+
+    <style>
+        /* Page Heading */
+        .documents-hero {
+            padding: 165px 20px 70px;
+            text-align: center;
+            color: #ffffff;
+            background: linear-gradient(
+                135deg,
+                rgba(32, 66, 84, 1) 0%,
+                rgba(9, 15, 38, 1) 100%
+            );
+        }
+
+        .documents-hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 12px;
+        }
+
+        .documents-hero p {
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 1.1rem;
+        }
+
+        /* Main Content */
+        .documents-section {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 65px 0;
+        }
+
+        /* Documents / Notes Buttons */
+        .category-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 55px;
+            flex-wrap: wrap;
+        }
+
+        .category-links a {
+            text-decoration: none;
+            color: white;
+            background: #204254;
+            padding: 12px 22px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .category-links a:hover {
+            background: #ffd166;
+            color: #091f2c;
+            transform: translateY(-3px);
+        }
+
+        /* Category Heading */
+        .document-category {
+            scroll-margin-top: 130px;
+            margin-bottom: 70px;
+        }
+
+        .category-heading {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #204254;
+        }
+
+        .category-heading > i {
+            width: 58px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            background: #204254;
+            border-radius: 50%;
+            font-size: 25px;
+        }
+
+        .category-heading h2 {
+            color: #091f2c;
+            margin: 0 0 5px;
+        }
+
+        .category-heading p {
+            color: #667;
+            margin: 0;
+        }
+
+        .notes-heading {
+            border-color: #f0a500;
+        }
+
+        .notes-heading > i {
+            background: #f0a500;
+        }
+
+        /* Cards */
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+        }
+
+        .document-card {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border-top: 5px solid #204254;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+            transition: 0.3s ease;
+        }
+
+        .document-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
+        }
+
+        .pdf-icon {
+            color: #e63946;
+            font-size: 58px;
+            margin-bottom: 18px;
+        }
+
+        .notes-icon {
+            color: #f0a500;
+            font-size: 58px;
+            margin-bottom: 18px;
+        }
+
+        .document-card h3 {
+            color: #091f2c;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .document-card p {
+            color: #667;
+            line-height: 1.6;
+            margin-bottom: 22px;
+            min-height: 52px;
+        }
+
+        .document-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .document-btn {
+            border: none;
+            padding: 11px 15px;
+            border-radius: 7px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.25s ease;
+        }
+
+        .document-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .view-btn {
+            color: #ffffff;
+            background: #204254;
+        }
+
+        .download-btn {
+            color: #091f2c;
+            background: #ffd166;
+        }
+
+        /* PDF Preview Popup */
+        .pdf-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.82);
+        }
+
+        .modal-content {
+            width: min(1050px, 100%);
+            height: 90vh;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #ffffff;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            z-index: 2;
+            border: none;
+            width: 38px;
+            height: 38px;
+            color: #ffffff;
+            background: #e63946;
+            border-radius: 50%;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        #pdfViewer {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .documents-hero {
+                padding-top: 140px;
+            }
+
+            .category-heading {
+                align-items: flex-start;
+            }
+
+            .pdf-modal {
+                padding: 10px;
+            }
+
+            .modal-content {
+                height: 85vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Same Header as index.html -->
+    <header id="header">
+        <div class="header-container">
+
+            <div class="logo" id="logo">
+                <img src="img/R LOGO.png" alt="Raaj Society Solutions Logo">
+                <h1>Raaj <span>Society Solutions</span></h1>
+            </div>
+
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a class="active" href="important-documents.html">Documents & Notes</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="documents-hero">
+        <h1>Documents & Notes</h1>
+        <p>Open, read, or download useful society documents and notes.</p>
+    </section>
+
+    <!-- Main Section -->
+    <section class="documents-section">
+
+        <!-- Category Buttons -->
+        <div class="category-links">
+            <a href="#documents">
+                <i class="fas fa-file-pdf"></i> Important Documents
+            </a>
+
+            <a href="#notes">
+                <i class="fas fa-book-open"></i> Notes
+            </a>
+        </div>
+
+        <!-- Important Documents -->
+        <div class="document-category" id="documents">
+
+            <div class="category-heading">
+                <i class="fas fa-file-pdf"></i>
+
+                <div>
+                    <h2>Important Documents</h2>
+                    <p>Society rules, official forms, audit files, and other documents.</p>
+                </div>
+            </div>
+
+            <div class="documents-grid">
+
+                <!-- Document 1 -->
+                <div class="document-card">
+                    <i class="fas fa-file-pdf pdf-icon"></i>
+                    <h3>Housing Society Bye Laws Final 2015</h3>
+                    <!-- <p>Rules and regulations for co-operative housing societies.</p> -->
+
+                    <div class="document-actions">
+                        <button class="document-btn view-btn"
+                                onclick="openPdf('pdf/Housing Society Bye Laws Final 2015.pdf')">
+                            <i class="fas fa-eye"></i> View PDF
+                        </button>
+
+                        <a href="pdf/Housing Society Bye Laws Final 2015.pdf"
+                           class="document-btn download-btn"
+                           download>
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Document 2 -->
+                <div class="document-card">
+                    <i class="fas fa-file-pdf pdf-icon"></i>
+                    <h3>MCS Act (2025 updated)</h3>
+                    <!-- <p>Checklist for society audit documents and required records.</p> -->
+
+                    <div class="document-actions">
+                        <button class="document-btn view-btn"
+                                onclick="openPdf('pdf/MCS Act (2025 updated).pdf')">
+                            <i class="fas fa-eye"></i> View PDF
+                        </button>
+
+                        <a href="pdf/MCS Act (2025 updated).pdf"
+                           class="document-btn download-btn"
+                           download>
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Document 3 -->
+                <div class="document-card">
+                    <i class="fas fa-file-pdf pdf-icon"></i>
+                    <h3>MCS Election Rules, 2019</h3>
+                    <!-- <p>Information related to maintenance billing and payments.</p> -->
+
+                    <div class="document-actions">
+                        <button class="document-btn view-btn"
+                                onclick="openPdf('pdf/MCS Election Rules, 2019.pdf')">
+                            <i class="fas fa-eye"></i> View PDF
+                        </button>
+
+                        <a href="pdf/MCS Election Rules, 2019.pdf"
+                           class="document-btn download-btn"
+                           download>
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Document 4-->
+                <div class="document-card">
+                    <i class="fas fa-file-pdf pdf-icon"></i>
+                    <h3>MCS Election to MC Rules, 2014</h3>
+                    <!-- <p>Information related to maintenance billing and payments.</p> -->
+
+                    <div class="document-actions">
+                        <button class="document-btn view-btn"
+                                onclick="openPdf('pdf/MCS Election to MC Rules, 2014.pdf')">
+                            <i class="fas fa-eye"></i> View PDF
+                        </button>
+
+                        <a href="pdf/MCS Election to MC Rules, 2014.pdf"
+                           class="document-btn download-btn"
+                           download>
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Document 5 -->
+                <div class="document-card">
+                    <i class="fas fa-file-pdf pdf-icon"></i>
+                    <h3>MCS Rules, 2026</h3>
+                    <!-- <p>Information related to maintenance billing and payments.</p> -->
+
+                    <div class="document-actions">
+                        <button class="document-btn view-btn"
+                                onclick="openPdf('pdf/MCS Rules 2026.pdf')">
+                            <i class="fas fa-eye"></i> View PDF
+                        </button>
+
+                        <a href="pdf/MCS Rules 2026.pdf"
+                           class="document-btn download-btn"
+                           download>
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Document 6 -->
+                <div class="document-card">
+                    <i class="fas fa-file-pdf pdf-icon"></i>
+                    <h3>Model Bye Laws English 2014</h3>
+                    <!-- <p>Information related to maintenance billing and payments.</p> -->
+
+                    <div class="document-actions">
+                        <button class="document-btn view-btn"
+                                onclick="openPdf('pdf/Model Bye Laws English 2014.pdf')">
+                            <i class="fas fa-eye"></i> View PDF
+                        </button>
+
+                        <a href="pdf/Model Bye Laws English 2014.pdf"
+                           class="document-btn download-btn"
+                           download>
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Notes -->
+        <!-- <div class="document-category" id="notes">
+
+            <div class="category-heading notes-heading">
+                <i class="fas fa-book-open"></i>
+
+                <div>
+                    <h2>Notes</h2>
+                    <p>Useful notes, guides, and learning material for society management.</p>
+                </div>
+            </div>
+
+            <div class="documents-grid"> -->
+
+                <!-- Note 1 -->
+                <!-- <div class="document-card">
+                    <i class="fas fa-file-alt notes-icon"></i>
+                    <h3>Society Management Notes</h3>
+                    <p>Important points and guidance for managing a housing society.</p>
+
+                    <div class="document-actions">
+                        <button class="document-btn view-btn"
+                                onclick="openPdf('notes/society-management-notes.pdf')">
+                            <i class="fas fa-eye"></i> Read Notes
+                        </button>
+
+                        <a href="notes/society-management-notes.pdf"
+                           class="document-btn download-btn"
+                           download>
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </div>
+                </div> -->
+
+                <!-- Note 2 -->
+                <!-- <div class="document-card">
+                    <i class="fas fa-file-alt notes-icon"></i>
+                    <h3>Audit Preparation Notes</h3>
+                    <p>Helpful notes for audit preparation and document handling.</p>
+
+                    <div class="document-actions">
+                        <button class="document-btn view-btn"
+                                onclick="openPdf('notes/audit-preparation-notes.pdf')">
+                            <i class="fas fa-eye"></i> Read Notes
+                        </button>
+
+                        <a href="notes/audit-preparation-notes.pdf"
+                           class="document-btn download-btn"
+                           download>
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </div>
+                </div> -->
+
+                <!-- Note 3 -->
+                <!-- <div class="document-card">
+                    <i class="fas fa-file-alt notes-icon"></i>
+                    <h3>Election Process Notes</h3>
+                    <p>Basic notes related to society committee election procedures.</p>
+
+                    <div class="document-actions">
+                        <button class="document-btn view-btn"
+                                onclick="openPdf('notes/election-process-notes.pdf')">
+                            <i class="fas fa-eye"></i> Read Notes
+                        </button>
+
+                        <a href="notes/election-process-notes.pdf"
+                           class="document-btn download-btn"
+                           download>
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </div>
+                </div> -->
+
+            <!-- </div>
+        </div> -->
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+
+                <div class="footer-column">
+                    <h3>Raaj Society Solutions</h3>
+                    <p>
+                        Providing comprehensive housing society management
+                        services with professionalism and expertise.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="index.html#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="index.html#about"><i class="fas fa-chevron-right"></i> About</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-phone"></i> +91 7900035507</p>
+                    <p><i class="fas fa-envelope"></i> info@raajsocietysolutions.in</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kamothe, Navi Mumbai</p>
+                </div>
+
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2026 Raaj Society Solutions. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PDF View Popup -->
+    <div class="pdf-modal" id="pdfModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closePdf()">&times;</button>
+            <iframe id="pdfViewer" title="PDF Viewer"></iframe>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <div class="floating-buttons">
+
+        <!-- WhatsApp -->
+        <a href="https://wa.me/917900035507"
+           class="floating-btn whatsapp-btn"
+           target="_blank"
+           aria-label="Chat on WhatsApp"
+           data-tooltip="Chat on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    
+        <!-- SMS -->
+        <a href="sms:+917900035507"
+           class="floating-btn sms-btn"
+           aria-label="Send SMS"
+           data-tooltip="Send SMS">
+            <i class="fas fa-comment-dots"></i>
+        </a>
+    
+        <!-- Call -->
+        <a href="tel:+917900035507"
+           class="floating-btn call-btn"
+           aria-label="Call us"
+           data-tooltip="Call Us">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+    
+        <!-- Email -->
+        <a href="mailto:info@raajsocietysolutions.in"
+           class="floating-btn email-btn"
+           aria-label="Send email"
+           data-tooltip="Send Email">
+            <i class="fas fa-envelope"></i>
+        </a>
+    
+    </div>
+
+    <script src="js/backToTop.js"></script>
+
+    <script>
+        function openPdf(pdfPath) {
+            document.getElementById("pdfViewer").src = pdfPath;
+            document.getElementById("pdfModal").style.display = "flex";
+        }
+
+        function closePdf() {
+            document.getElementById("pdfModal").style.display = "none";
+            document.getElementById("pdfViewer").src = "";
+        }
+
+        window.addEventListener("click", function (event) {
+            const modal = document.getElementById("pdfModal");
+
+            if (event.target === modal) {
+                closePdf();
+            }
+        });
+
+        /* Mobile menu */
+        const mobileMenu = document.querySelector(".mobile-menu");
+        const navMenu = document.getElementById("nav-menu");
+
+        mobileMenu.addEventListener("click", function () {
+            navMenu.classList.toggle("active");
+        });
+
+        /* Header scroll effect */
+        window.addEventListener("scroll", function () {
+            const header = document.getElementById("header");
+
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        });
+    </script>
+
+</body>
+</html>

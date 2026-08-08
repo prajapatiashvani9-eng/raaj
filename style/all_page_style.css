@@ -26,7 +26,6 @@ body {
     font-family: 'Raleway', sans-serif;
     line-height: 1.7;
     color: #1a252f;
-    /* background: linear-gradient(180deg, #182848 0%,#4b6cb7  100%); */
     overflow-x: hidden;
 }
 
@@ -66,7 +65,7 @@ header {
     background: #204254;
     background: linear-gradient(135deg, rgba(32, 66, 84, 1) 0%, rgba(9, 15, 38, 1) 100%);
     color: #f8f9fa;
-    padding: 15px 0;
+    padding: 0px 0;
     position: fixed;
     width: 100%;
     top: 0;
@@ -91,7 +90,7 @@ header {
     text-decoration: none;
     background-color: #ffffff;
     border-radius: 15px;
-    padding: 10px;
+    padding: 6px;
     
 }
 
@@ -299,80 +298,219 @@ footer {
     color: rgba(255, 255, 255, 0.6);
 }
 
-/* Back to Top Button */
+/* Bottom Right Floating Buttons */
 .back-to-top {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: #204254;
-    background: linear-gradient(135deg, rgba(32, 66, 84, 1) 0%, rgba(9, 15, 38, 1) 100%);
+    bottom: 25px;
+    left: 25px; 
+    width: 52px;
+    height: 52px;
+    background: #1e3f51; 
     color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: 20px;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.28);
+    z-index: 1000;
+    
+
     opacity: 0;
     visibility: hidden;
-    z-index: 999;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(20px);
+    transition: all 0.3s ease;
 }
+
 
 .back-to-top.active {
     opacity: 1;
     visibility: visible;
+    transform: translateY(0);
 }
 
 .back-to-top:hover {
-    transform: translateY(-5px);
-    background: linear-gradient(135deg, #4a6b40, #2c5530);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    background: #ffd166; 
+    color: #1e3f51;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
 }
 
-/* Responsive Design */
+.floating-buttons {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.floating-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 23px;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.28);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.floating-btn:hover {
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+}
+
+.whatsapp-btn {
+    background: #25d366;
+}
+
+.sms-btn {
+    background: #5b5bd6;
+}
+
+.call-btn {
+    background: #1e3f51;
+}
+
+.email-btn {
+    background: #ea4335;
+}
+
+
+.floating-btn {
+    position: relative;
+}
+
+.floating-btn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 65px;
+    top: 50%;
+    transform: translateY(-50%) translateX(10px);
+    background: #1e3f51;
+    color: #ffffff;
+    padding: 8px 13px;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.floating-btn:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0);
+}
+
+
+@media (max-width: 576px) {
+
+    /* Back to Top Button */
+    .back-to-top {
+        left: 15px;
+        bottom: 18px;
+        width: 46px;
+        height: 46px;
+        font-size: 18px;
+    }
+
+
+    /* Floating Buttons */
+    .floating-buttons {
+        right: 15px;
+        bottom: 18px;
+        gap: 10px;
+    }
+
+    .floating-btn {
+        width: 46px;
+        height: 46px;
+        font-size: 20px;
+    }
+}
+
 @media (max-width: 768px) {
+
+    /* Mobile Menu Icon */
     .mobile-menu {
         display: block;
-        color: #1a252f;
+        color: #dae2e6;
     }
-    
+
+
+    /* Mobile Navigation */
     nav ul {
         position: fixed;
+
         top: 70px;
         left: -100%;
+
         width: 100%;
         height: calc(100vh - 70px);
+
         background-color: #2c2f55;
+
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
+
         padding-top: 50px;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+        transition: all 0.4s cubic-bezier(
+            0.175,
+            0.885,
+            0.32,
+            1.275
+        );
+
         gap: 20px;
     }
-    
+
+
+    /* Menu Open */
     nav ul.active {
         left: 0;
     }
-    
+
+
     nav ul li {
         margin: 15px 0;
     }
-    
+
+
+    /* Footer */
     .footer-content {
         grid-template-columns: 1fr;
         gap: 30px;
     }
-    
+
+
     .footer-column h3 {
         font-size: 1.2rem;
     }
-    
+
+
+    /* Logo */
     .logo h1 {
         font-size: 1.2rem;
+    }
+
+
+    /* Back to Top - Tablet */
+    .back-to-top {
+        bottom: 20px;
+        right: 70px;
     }
 }

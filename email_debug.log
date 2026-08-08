@@ -1,0 +1,14 @@
+2026-08-02 06:11:38 - === New Request ===
+2026-08-02 06:11:38 - POST Data: Array
+(
+    [name] => Ashvani Prajapati
+    [email] => prajapatiashvani9@gmail.com
+    [phone] => 09919008622
+    [society] => sfgfsf
+    [units] => 1-20
+    [message] => eTGDFHBSD
+)
+
+2026-08-02 06:11:38 - Parsed Data - Name: Ashvani Prajapati, Email: prajapatiashvani9@gmail.com, Phone: 09919008622
+2026-08-02 06:11:38 - Initializing PHPMailer...
+2026-08-02 06:11:43 - Email sent successfully!

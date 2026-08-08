@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - RAAJ Society Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Base Styles */
         :root {
@@ -390,8 +391,8 @@
             background-color: var(--primary);
             color: white;
             padding: 12px 25px;
-            border-radius: 30px;
             text-decoration: none;
+            border-radius: 30px;
             font-weight: 600;
             margin-top: 20px;
             transition: var(--transition);
@@ -563,6 +564,52 @@
                 height: 250px;
             }
         }
+
+        /* Alert message styles */
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border-left: 4px solid #28a745;
+    animation: slideDown 0.5s ease;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border-left: 4px solid #dc3545;
+    animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-message {
+    transition: opacity 0.3s ease;
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.fa-spin {
+    animation: spin 1s linear infinite;
+}
     </style>
 </head>
 <body>
@@ -613,7 +660,7 @@
                             </div>
                             <div class="contact-text">
                                 <h4>Call Us</h4>
-                                <p>+91 98765 43210</p>
+                                <p>+91 7900035507 /919 /918 /128</p>
                             </div>
                         </div>
                         
@@ -623,7 +670,7 @@
                             </div>
                             <div class="contact-text">
                                 <h4>Email Us</h4>
-                                <p>info@raajsocietySolutions.com</p>
+                                <p>info@raajsocietysolutions.in</p>
                             </div>
                         </div>
                         
@@ -633,7 +680,7 @@
                             </div>
                             <div class="contact-text">
                                 <h4>Visit Us</h4>
-                                <p>Mumbai, Maharashtra</p>
+                                <p>Office-62, Jai Ganeshji CHS Ltd, PLOT-34, SECTOR-36, KAMOTHE, NAVI MUMBAI - 410 209.</p>
                             </div>
                             <div>
 
@@ -643,54 +690,53 @@
                 </div>
                 
                 <div class="form-wrapper fade-in">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="society">Society Name</label>
-                            <input type="text" id="society" class="form-control" placeholder="Enter your society name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="units">Number of Units</label>
-                            <select id="units" class="form-control" required>
-                                <option value="" disabled selected>Select number of units</option>
-                                <option value="1-20">1-20 Units</option>
-                                <option value="21-50">21-50 Units</option>
-                                <option value="51-100">51-100 Units</option>
-                                <option value="101-200">101-200 Units</option>
-                                <option value="201+">201+ Units</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" class="form-control" rows="5" placeholder="Tell us about your requirements..." required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="submit-btn">
-                            <i class="fas fa-paper-plane"></i> Send Message
-                        </button>
-                    </form>
+                    <form id="contactForm" action="send_email.php" method="POST">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="society">Society Name</label>
+                        <input type="text" id="society" name="society" class="form-control" placeholder="Enter your society name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="units">Number of Units</label>
+                        <select id="units" name="units" class="form-control" required>
+                            <option value="" disabled selected>Select number of units</option>
+                            <option value="1-20">1-20 Units</option>
+                            <option value="21-50">21-50 Units</option>
+                            <option value="51-100">51-100 Units</option>
+                            <option value="101-200">101-200 Units</option>
+                            <option value="201+">201+ Units</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" class="form-control" rows="5" placeholder="Tell us about your requirements..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Map Section - नया Section जोड़ा गया है -->
     <section class="map-section">
         <div class="container">
             <h2 class="fade-in">Find Our Office</h2>
@@ -706,7 +752,7 @@
                             </div>
                             <div>
                                 <h4>Address</h4>
-                                <p>123 Society Lane, Bandra West, Mumbai, Maharashtra 400050</p>
+                                <p>Office-62, Jai Ganeshji CHS Ltd, PLOT-34, SECTOR-36, KAMOTHE, <br> NAVI MUMBAI - 410 209.</p>
                             </div>
                         </div>
                         
@@ -728,12 +774,12 @@
                             </div>
                             <div>
                                 <h4>Nearest Metro Station</h4>
-                                <p>Bandra Metro Station (10 min walk)</p>
+                                <p>📍Mansarovar</p>
                             </div>
                         </div>
                     </div>
                     
-                    <a href="https://www.google.com/maps/dir//Mumbai,+Maharashtra" target="_blank" class="directions-btn">
+                    <a href="https://www.google.com/maps/place/Jay+Ganeshji+chs+Nr+daily+needs+pl+34+sec+36/@19.0274891,73.0890401,16.5z/data=!4m6!3m5!1s0x3be7e9004462bffb:0xb0925a646eec1e6a!8m2!3d19.0257782!4d73.090308!16s%2Fg%2F11vwxncx44?entry=ttu&g_ep=EgoyMDI2MDcyMi4wIKXMDSoASAFQAw%3D%3D">
                         <i class="fas fa-directions"></i> Get Directions
                     </a>
                 </div>
@@ -742,7 +788,7 @@
                     <!-- Google Map Embed -->
                     <iframe 
                         id="map"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.664130587294!2d72.82721421490062!3d19.055566587108435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c8a6c5e0c3a5%3A0x8d37b9a3d5b3b8f5!2sBandra%20West%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1621234567890!5m2!1sen!2sin" 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30179.691788190812!2d73.07963286939079!3d18.99937636010163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7e9004462bffb%3A0xb0925a646eec1e6a!2sJay%20Ganeshji%20chs%20Nr%20daily%20needs%20pl%2034%20sec%2036!5e0!3m2!1sen!2sin!4v1785770746262!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" 
                         allowfullscreen="" 
                         loading="lazy">
                     </iframe>
@@ -757,9 +803,9 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Contact Us</h3>
-                    <p>Email: info@raajsocietySolutions.com</p>
-                    <p>Phone: +91 98765 43210</p>
-                    <p>Address: 123 Society Lane, Mumbai, India</p>
+                    <p>Email: info@raajsocietysolutions.in</p>
+                    <p>Phone: +91 7900035507 /919 /918 /128</p>
+                    <p>Office-62, Jai Ganeshji CHS Ltd, PLOT-34, SECTOR-36, KAMOTHE, NAVI MUMBAI - 410 209.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -777,16 +823,16 @@
                  <div class="footer-section">
                     <h3>Follow Us</h3>
                     <p>
-                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-twitter"></i></a>
-                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" style="color: white;"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/raajsocietysolutions/" style="color: white; margin-right: 15px;"><i class="fab fa-facebook-f"></i></a>
+                        <!-- <a href="https://twitter.com/your_username/" style="color: white; margin-right: 15px;"><i class="fab fa-twitter"></i></a> -->
+                        <!-- <a href="https://www.linkedin.com/in/your_username/" style="color: white; margin-right: 15px;"><i class="fab fa-linkedin-in"></i></a> -->
+                        <a href="https://www.instagram.com/raaj_society_solutions/" style="color: white;"><i class="fab fa-instagram"></i></a>
                     </p>
                 </div>
             </div>
-            <!-- <div class="footer-bottom">
-                <p>&copy; 2023 Raaj Society Solutions - Professional Statutory Audit Services. All rights reserved.</p>
-            </div> -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 Raaj Society Solutions. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
@@ -813,13 +859,87 @@
             window.addEventListener('scroll', fadeInOnScroll);
             
             // Form submission handling
+                        // Form submission handling with AJAX
             const contactForm = document.getElementById('contactForm');
-            
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Thank you for your message! We will get back to you soon.');
-                contactForm.reset();
-            });
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    // Show loading state
+                    const submitBtn = contactForm.querySelector('.submit-btn');
+                    const originalBtnText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                    submitBtn.disabled = true;
+
+                    // Create FormData object
+                    const formData = new FormData(contactForm);
+
+                    // Send AJAX request
+                    fetch('send_email.php', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Show success message
+                            showMessage(data.message, 'success');
+                            contactForm.reset();
+                        } else {
+                            // Show error messages
+                            let errorMsg = data.message + '<br>';
+                            if (data.errors) {
+                                for (let field in data.errors) {
+                                    errorMsg += '• ' + data.errors[field] + '<br>';
+                                }
+                            }
+                            showMessage(errorMsg, 'error');
+                        }
+                    })
+                    .catch(error => {
+                        showMessage('Network error. Please try again.', 'error');
+                    })
+                    .finally(() => {
+                        // Restore button
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.disabled = false;
+                    });
+                });
+            }
+
+            // Function to show messages
+            function showMessage(message, type) {
+                // Remove existing message
+                const existingMessage = document.querySelector('.form-message');
+                if (existingMessage) {
+                    existingMessage.remove();
+                }
+
+                // Create message element
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'form-message ' + (type === 'success' ? 'alert-success' : 'alert-error');
+                messageDiv.innerHTML = message;
+                messageDiv.style.padding = '15px';
+                messageDiv.style.marginBottom = '20px';
+                messageDiv.style.borderRadius = '5px';
+                messageDiv.style.borderLeft = '4px solid ' + (type === 'success' ? '#28a745' : '#dc3545');
+                messageDiv.style.backgroundColor = type === 'success' ? '#d4edda' : '#f8d7da';
+                messageDiv.style.color = type === 'success' ? '#155724' : '#721c24';
+
+                // Insert at top of form
+                const formWrapper = document.querySelector('.form-wrapper');
+                formWrapper.insertBefore(messageDiv, formWrapper.firstChild);
+
+                // Auto hide after 5 seconds
+                setTimeout(() => {
+                    messageDiv.style.opacity = '0';
+                    setTimeout(() => messageDiv.remove(), 500);
+                }, 5000);
+            }
             
             // Add floating animation to some elements
             const formWrapper = document.querySelector('.form-wrapper');

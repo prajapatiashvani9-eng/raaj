@@ -621,7 +621,8 @@
         .image-placeholder {
             width: 100%;
             max-width: 350px;
-            height: 400px;
+            height: auto;               
+            min-height: 400px;          
             background-color: var(--light);
             border-radius: 10px;
             margin: 0 auto 20px;
@@ -632,11 +633,27 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: var(--transition);
             border: 3px dashed var(--gray);
+            overflow: hidden;          
+            padding: 15px;             
+            box-sizing: border-box;
         }
-        .image-placeholder img{
-            height: 500px;
-            width: 300px;
+
+        .image-placeholder img {
+            width: 100%;
+            height: auto;
+            max-height: 320px;         
+            object-fit: contain;        
+            border-radius: 5px;
+            margin-bottom: 10px;       
         }
+
+        .image-placeholder p {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 500;
+            color: #555;               
+        }
+        
         .image-placeholder:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(0,0,0,0.15);
@@ -1036,7 +1053,7 @@
             <a href="index.html" class="mobile-nav-item">
                 <i class="fas fa-home"></i> Home
             </a>
-            
+
             <!-- Mobile Services Dropdown -->
             <div class="mobile-services-dropdown">
                 <button class="mobile-services-toggle" id="mobileServicesToggle">
@@ -1089,9 +1106,9 @@
         
         <div class="mobile-contact-info">
             <h4>Contact Info</h4>
-            <p><i class="fas fa-phone"></i> +91 720 818 2007</p>
-            <p><i class="fas fa-envelope"></i> raajsocietyhub.in</p>
-            <p><i class="fas fa-map-marker-alt"></i> Navi Mumbai, Maharashtra</p>
+            <p><i class="fas fa-phone"></i> +91 7900035507</p>
+            <p><i class="fas fa-envelope"></i> raajsocietysolutions.in</p>
+            <p><i class="fas fa-map-marker-alt"></i> Office-62, Jai Ganeshji CHS Ltd, PLOT-34, SECTOR-36, KAMOTHE, NAVI MUMBAI - 410 209.</p>
         </div>
     </div>
 
@@ -1194,8 +1211,8 @@
             <div class="profile-content">
                 <div class="profile-image fade-in">
                     <div class="image-placeholder">
-                        <i class="fas fa-user-tie"></i>
-                        <!-- <img src="img/generated-image.png" alt=""> -->
+                        <!-- <i class="fas fa-user-tie"></i> -->
+                        <img src="img/profile_img.jpeg" alt="">
                         <p>N. Gangadhar (Raaj Sir) Photo</p>
                     </div>
                     <div class="profile-role">Founder & Proprietor</div>
@@ -1397,9 +1414,9 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Contact Us</h3>
-                    <p>Email: info@raajsocietySolutions.com</p>
-                    <p>Phone: +91 98765 43210</p>
-                    <p>Address: 123 Society Lane, Mumbai, India</p>
+                    <p>Email: info@raajsocietysolutions.in</p>
+                    <p>Phone: +91 7900035507 /919 /918 /128</p>
+                    <p>Address: Office-62, Jai Ganeshji CHS Ltd, PLOT-34, SECTOR-36, KAMOTHE, <br> NAVI MUMBAI - 410 209.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -1417,18 +1434,19 @@
                  <div class="footer-section">
                     <h3>Follow Us</h3>
                     <p>
-                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-twitter"></i></a>
-                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" style="color: white;"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/raajsocietysolutions/" style="color: white; margin-right: 15px;"><i class="fab fa-facebook-f"></i></a>
+                        <!-- <a href="https://twitter.com/your_username/" style="color: white; margin-right: 15px;"><i class="fab fa-twitter"></i></a> -->
+                        <!-- <a href="https://www.linkedin.com/in/your_username/" style="color: white; margin-right: 15px;"><i class="fab fa-linkedin-in"></i></a> -->
+                        <a href="https://www.instagram.com/raaj_society_solutions/" style="color: white;"><i class="fab fa-instagram"></i></a>
                     </p>
                 </div>
             </div>
-            <!-- <div class="footer-bottom">
-                <p>&copy; 2023 Raaj Society Solutions - Professional Statutory Audit Services. All rights reserved.</p>
-            </div> -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 Raaj Society Solutions. All rights reserved.</p>
+            </div>
         </div>
     </footer>
+    
 
     <script>
         // Mobile Menu Functionality
